@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\QLKhachSSan\\QLKhachSanMVC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -138,35 +138,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThanhToan\\Index.cshtml",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
-              "RelativeToolTip": "Views\\ThanhToan\\Index.cshtml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACMAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T15:55:40.984Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAowB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T15:51:19.484Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Create.cshtml",
@@ -174,8 +150,7 @@
               "RelativeToolTip": "Views\\DatPhong\\Create.cshtml",
               "ViewState": "AgIAAIEAAAAAAAAAAAAAAE0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T14:31:31.82Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:31:31.82Z"
             },
             {
               "$type": "Document",
@@ -199,8 +174,7 @@
               "RelativeToolTip": "Models\\HotelModels.cs",
               "ViewState": "AgIAAGAAAAAAAAAAAIAzwF8AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T14:28:44.85Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:28:44.85Z"
             },
             {
               "$type": "Document",
@@ -236,21 +210,44 @@
               "RelativeToolTip": "Views\\DatPhong\\Details.cshtml",
               "ViewState": "AgIAAGYAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T14:31:38.384Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:31:38.384Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Index.cshtml",
               "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Index.cshtml",
               "RelativeToolTip": "Views\\DatPhong\\Index.cshtml",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAYwCgAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-10T14:50:48.536Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T15:51:19.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThanhToan\\Index.cshtml",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
+              "RelativeToolTip": "Views\\ThanhToan\\Index.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACMAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T15:55:40.984Z"
             },
             {
               "$type": "Document",
