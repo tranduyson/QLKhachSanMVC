@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace HotelManagement.Models
 {
@@ -41,11 +44,67 @@ namespace HotelManagement.Models
             }
         }
 
+        private static async Task<T?> PostToApiAsync<T>(string relativePath, object data)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(data, _jsonOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resp = await _httpClient.PostAsync(relativePath, content);
+                
+                if (!resp.IsSuccessStatusCode) return default;
+                
+                var responseJson = await resp.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<T>(responseJson, _jsonOptions);
+            }
+            catch (Exception ex)
+            {
+                return default;
+            }
+        }
+
+        private static async Task<bool> PutToApiAsync(string relativePath, object data)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(data, _jsonOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var resp = await _httpClient.PutAsync(relativePath, content);
+                return resp.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        private static async Task<bool> DeleteFromApiAsync(string relativePath)
+        {
+            try
+            {
+                var resp = await _httpClient.DeleteAsync(relativePath);
+                return resp.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public static IReadOnlyList<LoaiPhong> GetLoaiPhongs()
             => GetFromApi<List<LoaiPhong>>("api/LoaiPhong") ?? new List<LoaiPhong>();
 
         public static LoaiPhong? GetLoaiPhong(int id)
             => GetFromApi<LoaiPhong>($"api/LoaiPhong/{id}");
+
+        public static LoaiPhong? CreateLoaiPhong(LoaiPhong loaiPhong)
+            => PostToApiAsync<LoaiPhong>("api/LoaiPhong", loaiPhong).GetAwaiter().GetResult();
+
+        public static bool UpdateLoaiPhong(LoaiPhong loaiPhong)
+            => PutToApiAsync($"api/LoaiPhong/{loaiPhong.MaLoaiPhong}", loaiPhong).GetAwaiter().GetResult();
+
+        public static bool DeleteLoaiPhong(int id)
+            => DeleteFromApiAsync($"api/LoaiPhong/{id}").GetAwaiter().GetResult();
 
         public static IReadOnlyList<Phong> GetPhongs()
             => GetFromApi<List<Phong>>("api/Phong") ?? new List<Phong>();

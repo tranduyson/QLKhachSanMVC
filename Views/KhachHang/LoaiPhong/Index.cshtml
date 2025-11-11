@@ -31,7 +31,7 @@
                     <td class="fw-semibold">@item.TenLoaiPhong</td>
                     <td class="text-muted">@item.MoTa</td>
                     <td>@item.SoGiuong</td>
-                    <td>@item.DienTich?.ToString("0.##")</td>
+                    <td>@item.DienTich.ToString("0.##")</td>
                     <td>@item.GiaMoiDem.ToString("N0") đ</td>
                     <td class="text-end">
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>

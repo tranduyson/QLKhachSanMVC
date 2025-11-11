@@ -2,13 +2,19 @@ namespace HotelManagement.Models
 {
     public class LoaiPhong
     {
-        public int Id { get; set; }
+        public int MaLoaiPhong { get; set; }
         public string TenLoaiPhong { get; set; } = string.Empty;
         public string? MoTa { get; set; }
         public int SoGiuong { get; set; }
-        public decimal? DienTich { get; set; }
+        public decimal DienTich { get; set; }
         public decimal GiaMoiDem { get; set; }
 
+        // Property alias for backward compatibility
+        public int Id 
+        { 
+            get => MaLoaiPhong; 
+            set => MaLoaiPhong = value; 
+        }
     }
 
     public class Phong

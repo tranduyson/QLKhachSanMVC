@@ -2,16 +2,142 @@
 @{
     ViewData["Title"] = "Dashboard";
     var statusColors = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-    {
-        ["Trong"] = "success",
-        ["Trống"] = "success",
-        ["DaDat"] = "warning",
-        ["DangSuDung"] = "info",
-        ["DaTra"] = "secondary",
-        ["DangSua"] = "dark",
-        ["BaoTri"] = "secondary"
-    };
+            {
+                ["Trong"] = "success",
+                ["Trống"] = "success",
+                ["DaDat"] = "warning",
+                ["DangSuDung"] = "info",
+                ["DaTra"] = "secondary",
+                ["DangSua"] = "dark",
+                ["BaoTri"] = "secondary"
+            };
+
+    // Tính toán dữ liệu cho biểu đồ
+    var totalRooms = Model.TotalRooms;
+    var availableRooms = Model.AvailableRooms;
+    var occupiedRooms = Model.RoomStatusBreakdown.Where(r => r.Key.Contains("DangSuDung") || r.Key.Contains("Đang sử dụng")).Sum(r => r.Value);
+    var maintenanceRooms = Model.RoomStatusBreakdown.Where(r => r.Key.Contains("BaoTri") || r.Key.Contains("Bảo trì") || r.Key.Contains("DangSua")).Sum(r => r.Value);
+
+    var availablePercent = totalRooms > 0 ? (double)availableRooms / totalRooms * 100 : 0;
+    var occupiedPercent = totalRooms > 0 ? (double)occupiedRooms / totalRooms * 100 : 0;
+    var maintenancePercent = totalRooms > 0 ? (double)maintenanceRooms / totalRooms * 100 : 0;
+
+    var availableDeg = availablePercent / 100 * 360;
+    var occupiedDeg = availableDeg + (occupiedPercent / 100 * 360);
 }
+
+<style>
+    .pie-chart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 10px;
+    }
+
+    .pie-chart {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        position: relative;
+        background: conic-gradient(
+            #28a745 0deg,
+            #28a745 @(availableDeg)deg,
+            #17a2b8 @(availableDeg)deg,
+            #17a2b8 @(occupiedDeg)deg,
+            #6c757d @(occupiedDeg)deg,
+            #6c757d 360deg
+        );
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+
+    .pie-chart-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 110px;
+        height: 110px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .pie-chart-total {
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        line-height: 1;
+    }
+
+    .pie-chart-label {
+        font-size: 11px;
+        color: #666;
+        margin-top: 4px;
+        text-transform: uppercase;
+    }
+
+    .pie-legend {
+        width: 100%;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        background: #f8f9fa;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+
+    .legend-item:hover {
+        background: #e9ecef;
+        transform: translateX(2px);
+    }
+
+    .legend-color {
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+
+    .legend-label {
+        flex: 1;
+        font-size: 13px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .legend-value {
+        font-weight: 600;
+        color: #333;
+        margin-left: 8px;
+        font-size: 15px;
+    }
+
+    .legend-percent {
+        font-size: 11px;
+        color: #666;
+        margin-left: 4px;
+    }
+
+    .legend-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .color-available { background: #28a745; }
+    .color-occupied { background: #17a2b8; }
+    .color-maintenance { background: #6c757d; }
+</style>
 
 <h2 class="mb-4">Chào mừng đến Quản lý khách sạn</h2>
 
@@ -69,15 +195,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var booking in Model.RecentBookings)
+                            @if (Model.RecentBookings != null && Model.RecentBookings.Any())
                             {
-                                var badgeColor = statusColors.TryGetValue(booking.TrangThai ?? string.Empty, out var color) ? color : "secondary";
+                                @foreach (var booking in Model.RecentBookings)
+                                {
+                                    var badgeColor = statusColors.TryGetValue(booking.TrangThai ?? string.Empty, out var color) ? color : "secondary";
+                                    <tr>
+                                        <td>#@booking.maDatPhong</td>
+                                        <td>@booking.KhachHang?.hoTen</td>
+                                        <td>@booking.NgayDat.ToString("dd/MM/yyyy")</td>
+                                        <td><span class="badge bg-@badgeColor">@booking.TrangThai</span></td>
+                                        <td class="text-end">@booking.TongTien.ToString("N0") đ</td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
                                 <tr>
-                                    <td>#@booking.maDatPhong</td>
-                                    <td>@booking.KhachHang?.hoTen</td>
-                                    <td>@booking.NgayDat.ToString("dd/MM/yyyy")</td>
-                                    <td><span class="badge bg-@badgeColor">@booking.TrangThai</span></td>
-                                    <td class="text-end">@booking.TongTien.ToString("N0") đ</td>
+                                    <td colspan="5" class="text-center text-muted py-4">Không có đặt phòng gần đây</td>
                                 </tr>
                             }
                         </tbody>
@@ -92,12 +227,57 @@
                 <h5 class="mb-0">Trạng thái phòng</h5>
             </div>
             <div class="card-body">
-                @foreach (var kv in Model.RoomStatusBreakdown)
+                @if (totalRooms > 0)
                 {
-                    var badge = statusColors.TryGetValue(kv.Key, out var c) ? c : "secondary";
-                    <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                        <span class="fw-semibold">@kv.Key</span>
-                        <span class="badge bg-@badge">@kv.Value</span>
+                    <div class="pie-chart-container">
+                        <div class="pie-chart">
+                            <div class="pie-chart-center">
+                                <div class="pie-chart-total">@totalRooms</div>
+                                <div class="pie-chart-label">Tổng phòng</div>
+                            </div>
+                        </div>
+
+                        <div class="pie-legend">
+                            <div class="legend-item">
+                                <div class="legend-left">
+                                    <div class="legend-color color-available"></div>
+                                    <span class="legend-label">Phòng trống</span>
+                                </div>
+                                <div>
+                                    <span class="legend-value">@availableRooms</span>
+                                    <span class="legend-percent">(@availablePercent.ToString("F1")%)</span>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <div class="legend-left">
+                                    <div class="legend-color color-occupied"></div>
+                                    <span class="legend-label">Đang sử dụng</span>
+                                </div>
+                                <div>
+                                    <span class="legend-value">@occupiedRooms</span>
+                                    <span class="legend-percent">(@occupiedPercent.ToString("F1")%)</span>
+                                </div>
+                            </div>
+
+                            <div class="legend-item">
+                                <div class="legend-left">
+                                    <div class="legend-color color-maintenance"></div>
+                                    <span class="legend-label">Bảo trì</span>
+                                </div>
+                                <div>
+                                    <span class="legend-value">@maintenanceRooms</span>
+                                    <span class="legend-percent">(@maintenancePercent.ToString("F1")%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center text-muted py-4">
+                        <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                        <p>Không có dữ liệu phòng</p>
                     </div>
                 }
             </div>
