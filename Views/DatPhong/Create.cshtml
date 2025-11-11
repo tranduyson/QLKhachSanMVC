@@ -1,0 +1,145 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model HotelManagement.Models.DatPhong
+@{
+    ViewData["Title"] = "Đặt phòng mới";
+    Model.ChiTietDatPhongs ??= new List<HotelManagement.Models.ChiTietDatPhong>();
+    Model.SuDungDichVus ??= new List<HotelManagement.Models.SuDungDichVu>();
+    var phongOptions = ((IEnumerable<HotelManagement.Models.Phong>)ViewBag.PhongOptions).ToList();
+    var dichVuOptions = ((IEnumerable<HotelManagement.Models.DichVu>)ViewBag.DichVuOptions).ToList();
+    Func<int?, IEnumerable<SelectListItem>> phongItems = selectedId => phongOptions
+        .Select(p => new SelectListItem
+        {
+            Value = p.Id.ToString(),
+            Text = $"{p.SoPhong} - {p.LoaiPhong?.TenLoaiPhong} ({p.LoaiPhong?.GiaMoiDem.ToString("N0")} đ/đêm)",
+            Selected = p.Id == selectedId
+        });
+    Func<int?, IEnumerable<SelectListItem>> dichVuItems = selectedId => dichVuOptions
+        .Select(d => new SelectListItem
+        {
+                    Value = d.maDichVu.ToString(),
+                    Text = $"{d.TenDichVu} ({d.donGia.ToString("N0")} đ)",
+                    Selected = d.maDichVu == selectedId
+        });
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<form asp-action="Create" method="post" class="needs-validation" novalidate>
+    <partial name="_ValidationSummary" />
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label asp-for="KhachHangId" class="form-label">Khách hàng</label>
+            <select asp-for="KhachHangId" asp-items="ViewBag.KhachHangList" class="form-select"></select>
+            <span asp-validation-for="KhachHangId" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="NhanVienId" class="form-label">Nhân viên phụ trách</label>
+            <select asp-for="NhanVienId" asp-items="ViewBag.NhanVienList" class="form-select"></select>
+            <span asp-validation-for="NhanVienId" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="NgayDat" class="form-label"></label>
+            <input asp-for="NgayDat" class="form-control" type="date" />
+            <span asp-validation-for="NgayDat" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="NgayNhan" class="form-label"></label>
+            <input asp-for="NgayNhan" class="form-control" type="date" />
+            <span asp-validation-for="NgayNhan" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="NgayTra" class="form-label"></label>
+            <input asp-for="NgayTra" class="form-control" type="date" />
+            <span asp-validation-for="NgayTra" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="TrangThai" class="form-label"></label>
+            <select asp-for="TrangThai" asp-items="ViewBag.TrangThaiList" class="form-select"></select>
+            <span asp-validation-for="TrangThai" class="text-danger"></span>
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <h5 class="mb-3">Chi tiết phòng</h5>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Phòng</th>
+                    <th>Đơn giá (đ)</th>
+                    <th>Số đêm</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < (Model.ChiTietDatPhongs?.Count ?? 0); i++)
+                {
+                    <tr>
+                        <td>
+                            <select asp-for="ChiTietDatPhongs[i].PhongId" class="form-select" asp-items="phongItems(Model.ChiTietDatPhongs[i].PhongId)"></select>
+                            <span asp-validation-for="ChiTietDatPhongs[i].PhongId" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="ChiTietDatPhongs[i].DonGia" class="form-control" type="number" step="1000" min="0" />
+                            <span asp-validation-for="ChiTietDatPhongs[i].DonGia" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="ChiTietDatPhongs[i].SoDem" class="form-control" type="number" min="1" />
+                            <span asp-validation-for="ChiTietDatPhongs[i].SoDem" class="text-danger"></span>
+                        </td>
+                        <td class="text-end fw-semibold text-muted">@Model.ChiTietDatPhongs[i].ThanhTien.ToString("N0") đ</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h5 class="mb-3">Dịch vụ sử dụng</h5>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Dịch vụ</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá (đ)</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < (Model.SuDungDichVus?.Count ?? 0); i++)
+                {
+                    <tr>
+                        <td>
+                            <select asp-for="SuDungDichVus[i].DichVuId" class="form-select" asp-items="dichVuItems(Model.SuDungDichVus[i].DichVuId)"></select>
+                            <span asp-validation-for="SuDungDichVus[i].DichVuId" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="SuDungDichVus[i].SoLuong" class="form-control" type="number" min="1" />
+                            <span asp-validation-for="SuDungDichVus[i].SoLuong" class="text-danger"></span>
+                        </td>
+                        <td>
+                            <input asp-for="SuDungDichVus[i].DonGia" class="form-control" type="number" step="1000" min="0" />
+                            <span asp-validation-for="SuDungDichVus[i].DonGia" class="text-danger"></span>
+                        </td>
+                        <td class="text-end fw-semibold text-muted">@Model.SuDungDichVus[i].ThanhTien.ToString("N0") đ</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-info">
+        <div class="d-flex justify-content-between">
+            <span class="fw-semibold">Tổng tiền dịch vụ tạm tính</span>
+            <span>@Model.SuDungDichVus?.Sum(s => s.ThanhTien).ToString("N0") đ</span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <span class="fw-semibold">Tổng tiền phòng tạm tính</span>
+            <span>@Model.ChiTietDatPhongs?.Sum(ct => ct.ThanhTien).ToString("N0") đ</span>
+        </div>
+    </div>
+
+    <partial name="_FormActions" />
+</form>

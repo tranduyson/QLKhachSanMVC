@@ -1,0 +1,43 @@
+@model IEnumerable<HotelManagement.Models.DichVu>
+@{
+    ViewData["Title"] = "Danh sách dịch vụ";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Danh sách dịch vụ</h2>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i> Thêm dịch vụ
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped align-mmaDichVudle">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Mã dịch vụ</th>
+                <th scope="col">Tên dịch vụ</th>
+                <th scope="col">Ghi chú</th>
+                <th scope="col">Giá</th>
+                <th scope="col" class="text-end">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.maDichVu</td>
+                    <td class="fw-semibold">@item.TenDichVu</td>
+                    <td class="text-muted">@item.ghiChu</td>
+                    <td>@item.donGia.ToString("N0") đ</td>
+                    <td class="text-end">
+                        <a asp-action="Details" asp-route-maDichVu="@item.maDichVu" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>
+                        <a asp-action="Edit" asp-route-maDichVu="@item.maDichVu" class="btn btn-sm btn-outline-primary me-1">Sửa</a>
+                        <form asp-action="Delete" asp-route-maDichVu="@item.maDichVu" method="post" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa dịch vụ này?');">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

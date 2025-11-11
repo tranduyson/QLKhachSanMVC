@@ -1,0 +1,434 @@
+{
+  "Version": 1,
+  "Hash": "AgcVETpki1FOL4JwVQ44I4iF7muJbg8nngJgbhYe/Ss=",
+  "Source": "HotelManagement",
+  "BasePath": "_content/HotelManagement",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "HotelManagement\\wwwroot",
+      "Source": "HotelManagement",
+      "ContentRoot": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\",
+      "BasePath": "_content/HotelManagement",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\css\\site.css",
+      "SourceId": "HotelManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\",
+      "BasePath": "_content/HotelManagement",
+      "RelativePath": "css/site#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lps5k7mh29",
+      "Integrity": "Zy/9ea/rI2LysIJ6BoTxj8FmsCu92exQC+RoL+NJZb8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
+      "SourceId": "HotelManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\",
+      "BasePath": "_content/HotelManagement",
+      "RelativePath": "js/datPhong#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "dxtkso027c",
+      "Integrity": "gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\datPhong.js"
+    },
+    {
+      "Identity": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\loaiPhong.js",
+      "SourceId": "HotelManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\",
+      "BasePath": "_content/HotelManagement",
+      "RelativePath": "js/loaiPhong#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9vir1cqzzi",
+      "Integrity": "RUkyxaAp3PV2GjWnGlvXAzfAP1yI0bAjpBXGc0I6WdY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\loaiPhong.js"
+    },
+    {
+      "Identity": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
+      "SourceId": "HotelManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\",
+      "BasePath": "_content/HotelManagement",
+      "RelativePath": "js/site#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1nqyvejzh8",
+      "Integrity": "XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/site.css",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3562"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zy/9ea/rI2LysIJ6BoTxj8FmsCu92exQC+RoL+NJZb8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 14:11:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zy/9ea/rI2LysIJ6BoTxj8FmsCu92exQC+RoL+NJZb8="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.lps5k7mh29.css",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3562"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Zy/9ea/rI2LysIJ6BoTxj8FmsCu92exQC+RoL+NJZb8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 14:11:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lps5k7mh29"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Zy/9ea/rI2LysIJ6BoTxj8FmsCu92exQC+RoL+NJZb8="
+        }
+      ]
+    },
+    {
+      "Route": "js/datPhong.dxtkso027c.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28012"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Nov 2025 14:32:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "dxtkso027c"
+        },
+        {
+          "Name": "label",
+          "Value": "js/datPhong.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU="
+        }
+      ]
+    },
+    {
+      "Route": "js/datPhong.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28012"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 10 Nov 2025 14:32:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU="
+        }
+      ]
+    },
+    {
+      "Route": "js/loaiPhong.9vir1cqzzi.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\loaiPhong.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11697"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RUkyxaAp3PV2GjWnGlvXAzfAP1yI0bAjpBXGc0I6WdY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Nov 2025 13:36:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9vir1cqzzi"
+        },
+        {
+          "Name": "label",
+          "Value": "js/loaiPhong.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RUkyxaAp3PV2GjWnGlvXAzfAP1yI0bAjpBXGc0I6WdY="
+        }
+      ]
+    },
+    {
+      "Route": "js/loaiPhong.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\loaiPhong.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11697"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RUkyxaAp3PV2GjWnGlvXAzfAP1yI0bAjpBXGc0I6WdY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 01 Nov 2025 13:36:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RUkyxaAp3PV2GjWnGlvXAzfAP1yI0bAjpBXGc0I6WdY="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.1nqyvejzh8.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9110"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 14:11:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1nqyvejzh8"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9110"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 25 Oct 2025 14:11:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg="
+        }
+      ]
+    }
+  ]
+}

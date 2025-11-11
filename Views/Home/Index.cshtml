@@ -1,0 +1,106 @@
+@model HotelManagement.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    var statusColors = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["Trong"] = "success",
+        ["Trống"] = "success",
+        ["DaDat"] = "warning",
+        ["DangSuDung"] = "info",
+        ["DaTra"] = "secondary",
+        ["DangSua"] = "dark",
+        ["BaoTri"] = "secondary"
+    };
+}
+
+<h2 class="mb-4">Chào mừng đến Quản lý khách sạn</h2>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted text-uppercase small">Tổng phòng</div>
+                <div class="display-6 fw-semibold">@Model.TotalRooms</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted text-uppercase small">Phòng trống</div>
+                <div class="display-6 fw-semibold text-success">@Model.AvailableRooms</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted text-uppercase small">Đặt hôm nay</div>
+                <div class="display-6 fw-semibold text-primary">@Model.TodaysBookings</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <div class="text-muted text-uppercase small">Doanh thu tháng</div>
+                <div class="display-6 fw-semibold text-warning">@Model.MonthlyRevenue.ToString("N0") đ</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-transparent border-0 py-3">
+                <h5 class="mb-0">Đặt phòng gần đây</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Mã</th>
+                                <th>Khách hàng</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                                <th class="text-end">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var booking in Model.RecentBookings)
+                            {
+                                var badgeColor = statusColors.TryGetValue(booking.TrangThai ?? string.Empty, out var color) ? color : "secondary";
+                                <tr>
+                                    <td>#@booking.maDatPhong</td>
+                                    <td>@booking.KhachHang?.hoTen</td>
+                                    <td>@booking.NgayDat.ToString("dd/MM/yyyy")</td>
+                                    <td><span class="badge bg-@badgeColor">@booking.TrangThai</span></td>
+                                    <td class="text-end">@booking.TongTien.ToString("N0") đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-transparent border-0 py-3">
+                <h5 class="mb-0">Trạng thái phòng</h5>
+            </div>
+            <div class="card-body">
+                @foreach (var kv in Model.RoomStatusBreakdown)
+                {
+                    var badge = statusColors.TryGetValue(kv.Key, out var c) ? c : "secondary";
+                    <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                        <span class="fw-semibold">@kv.Key</span>
+                        <span class="badge bg-@badge">@kv.Value</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

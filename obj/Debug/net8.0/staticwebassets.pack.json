@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
+      "PackagePath": "staticwebassets\\js\\datPhong.js"
+    },
+    {
+      "Id": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\loaiPhong.js",
+      "PackagePath": "staticwebassets\\js\\loaiPhong.js"
+    },
+    {
+      "Id": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HotelManagement.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.HotelManagement.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.HotelManagement.props",
+      "PackagePath": "build\\HotelManagement.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.HotelManagement.props",
+      "PackagePath": "buildMultiTargeting\\HotelManagement.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.HotelManagement.props",
+      "PackagePath": "buildTransitive\\HotelManagement.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

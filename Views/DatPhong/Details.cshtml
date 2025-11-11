@@ -1,0 +1,122 @@
+@model HotelManagement.Models.DatPhong
+@{
+    ViewData["Title"] = "Chi tiết đặt phòng";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3 bg-light">
+            <div class="text-muted">Mã đặt phòng</div>
+            <div class="fw-semibold fs-5">@Model.maDatPhong</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Khách hàng</div>
+            <div class="fw-semibold">@Model.KhachHang?.hoTen</div>
+            <div class="text-muted small">@Model.KhachHang?.SoDienThoai</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Nhân viên</div>
+            <div class="fw-semibold">@Model.NhanVien?.hoTen</div>
+            <div class="text-muted small">@Model.NhanVien?.Email</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Ngày đặt</div>
+            <div class="fw-semibold">@Model.NgayDat.ToString("dd/MM/yyyy")</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Ngày nhận</div>
+            <div class="fw-semibold">@Model.NgayNhan.ToString("dd/MM/yyyy")</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Ngày trả</div>
+            <div class="fw-semibold">@Model.NgayTra.ToString("dd/MM/yyyy")</div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Trạng thái</div>
+            <span class="badge bg-primary">@Model.TrangThai</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Tổng tiền</div>
+            <div class="fw-semibold fs-5 text-success">@Model.TongTien.ToString("N0") đ</div>
+        </div>
+    </div>
+</div>
+
+<h5 class="mb-3">Chi tiết phòng</h5>
+<div class="table-responsive mb-4">
+    <table class="table table-striped align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Phòng</th>
+                <th>Loại phòng</th>
+                <th>Đơn giá</th>
+                <th>Số đêm</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ChiTietDatPhongs ?? Enumerable.Empty<HotelManagement.Models.ChiTietDatPhong>())
+            {
+                <tr>
+                    <td>@item.Phong?.SoPhong</td>
+                    <td>@item.Phong?.LoaiPhong?.TenLoaiPhong</td>
+                    <td>@item.DonGia.ToString("N0") đ</td>
+                    <td>@item.SoDem</td>
+                    <td class="fw-semibold">@item.ThanhTien.ToString("N0") đ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h5 class="mb-3">Dịch vụ sử dụng</h5>
+<div class="table-responsive mb-4">
+    <table class="table table-striped align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Dịch vụ</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SuDungDichVus ?? Enumerable.Empty<HotelManagement.Models.SuDungDichVu>())
+            {
+                <tr>
+                    <td>@item.DichVu?.TenDichVu</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.DonGia.ToString("N0") đ</td>
+                    <td class="fw-semibold">@item.ThanhTien.ToString("N0") đ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-between">
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left-circle me-1"></i> Quay lại
+    </a>
+    <div class="d-flex gap-2">
+        <a asp-controller="ThanhToan" asp-action="Create" class="btn btn-success">
+            <i class="bi bi-credit-card-2-front me-1"></i> Tạo phiếu thanh toán
+        </a>
+    </div>
+</div>

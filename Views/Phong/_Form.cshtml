@@ -1,0 +1,33 @@
+@model HotelManagement.Models.Phong
+
+<partial name="_ValidationSummary" />
+
+<input type="hidden" asp-for="Id" />
+
+<div class="row g-3">
+    @if (Model.Id != 0)
+    {
+        <div class="col-md-4">
+            <label class="form-label">Mã phòng</label>
+            <input value="@Model.Id" class="form-control" readonly />
+        </div>
+    }
+    <div class="col-md-4">
+        <label asp-for="SoPhong" class="form-label"></label>
+        <input asp-for="SoPhong" class="form-control" />
+        <span asp-validation-for="SoPhong" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="LoaiPhongId" class="form-label">Loại phòng</label>
+        <select asp-for="LoaiPhongId" asp-items="ViewBag.LoaiPhongs" class="form-select"></select>
+        <span asp-validation-for="LoaiPhongId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="TinhTrang" class="form-label"></label>
+        <select asp-for="TinhTrang" asp-items="ViewBag.TinhTrangList" class="form-select"></select>
+        <span asp-validation-for="TinhTrang" class="text-danger"></span>
+    </div>
+</div>
+
+<partial name="_FormActions" />
+
