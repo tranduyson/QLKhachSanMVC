@@ -69,7 +69,7 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, ThanhToan model)
         {
-            if (id != model.Id)
+            if (id != model.maThanhToan)
             {
                 return BadRequest();
             }

@@ -96,7 +96,7 @@ namespace HotelManagement.Models
 
     public class ThanhToan
     {
-        public int Id { get; set; }
+        public int maThanhToan { get; set; }
         public int DatPhongId { get; set; }
         public DatPhong? DatPhong { get; set; }
         public decimal SoTien { get; set; }

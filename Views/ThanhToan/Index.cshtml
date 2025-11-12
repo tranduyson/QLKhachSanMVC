@@ -27,7 +27,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Id</td>
+                    <td>@item.maThanhToan</td>
                     <td>#@item.DatPhongId</td>
                     <td>@item.SoTien.ToString("N0") đ</td>
                     <td>@item.NgayThanhToan.ToString("dd/MM/yyyy")</td>
@@ -36,9 +36,9 @@
                         <span class="badge bg-success">@item.TrangThai</span>
                     </td>
                     <td class="text-end">
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-1">Sửa</a>
-                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa thanh toán này?');">
+                        <a asp-action="Details" asp-route-id="@item.maThanhToan" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>
+                        <a asp-action="Edit" asp-route-id="@item.maThanhToan" class="btn btn-sm btn-outline-primary me-1">Sửa</a>
+                        <form asp-action="Delete" asp-route-id="@item.maThanhToan" method="post" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa thanh toán này?');">
                             <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
                         </form>
                     </td>
