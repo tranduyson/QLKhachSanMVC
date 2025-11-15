@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AgcVETpki1FOL4JwVQ44I4iF7muJbg8nngJgbhYe/Ss=",
+  "Hash": "fEmR85I4EOFDjtztqPZFtZJy7wDN8qR7NTCJlJt+lZ0=",
   "Source": "HotelManagement",
   "BasePath": "_content/HotelManagement",
   "Mode": "Default",
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "dxtkso027c",
-      "Integrity": "gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=",
+      "Fingerprint": "kuu6ek5yl5",
+      "Integrity": "rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\datPhong.js"
@@ -185,51 +185,6 @@
       ]
     },
     {
-      "Route": "js/datPhong.dxtkso027c.js",
-      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "28012"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 10 Nov 2025 14:32:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dxtkso027c"
-        },
-        {
-          "Name": "label",
-          "Value": "js/datPhong.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU="
-        }
-      ]
-    },
-    {
       "Route": "js/datPhong.js",
       "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
       "Selectors": [],
@@ -240,7 +195,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28012"
+          "Value": "28052"
         },
         {
           "Name": "Content-Type",
@@ -248,11 +203,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=\""
+          "Value": "\"rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 10 Nov 2025 14:32:02 GMT"
+          "Value": "Sat, 15 Nov 2025 15:02:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -262,7 +217,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU="
+          "Value": "sha256-rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE="
+        }
+      ]
+    },
+    {
+      "Route": "js/datPhong.kuu6ek5yl5.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28052"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Nov 2025 15:02:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kuu6ek5yl5"
+        },
+        {
+          "Name": "label",
+          "Value": "js/datPhong.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE="
         }
       ]
     },

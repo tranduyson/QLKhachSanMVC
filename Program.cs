@@ -21,6 +21,31 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Require authentication for most pages: if AuthUser cookie is missing, redirect to login.
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path;
+
+    // Allow static assets, Account pages (login), and API endpoints to be accessed without the cookie
+    if (path.StartsWithSegments("/css") || path.StartsWithSegments("/js") || path.StartsWithSegments("/lib") ||
+        path.StartsWithSegments("/favicon.ico") || path.StartsWithSegments("/_framework") ||
+        path.StartsWithSegments("/Account") || path.StartsWithSegments("/api"))
+    {
+        await next();
+        return;
+    }
+
+    if (!context.Request.Cookies.ContainsKey("AuthUser"))
+    {
+        var returnUrl = context.Request.Path + context.Request.QueryString;
+        var loginUrl = "/Account/Login" + (string.IsNullOrEmpty(returnUrl) ? "" : "?returnUrl=" + System.Net.WebUtility.UrlEncode(returnUrl));
+        context.Response.Redirect(loginUrl);
+        return;
+    }
+
+    await next();
+});
+
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -30,8 +30,28 @@
                 </ul>
 
                 <ul class="navbar-nav ms-3">
-                    @if (Context.Request.Cookies.ContainsKey("AuthUser"))
+                    @{
+                        string? userName = null;
+                        var cookie = Context.Request.Cookies["AuthUser"];
+                        if (!string.IsNullOrEmpty(cookie))
+                        {
+                            try
+                            {
+                                using var doc = System.Text.Json.JsonDocument.Parse(cookie);
+                                if (doc.RootElement.TryGetProperty("Name", out var nameProp))
+                                {
+                                    userName = nameProp.GetString();
+                                }
+                            }
+                            catch { /* ignore parse errors */ }
+                        }
+                    }
+
+                    @if (!string.IsNullOrEmpty(userName))
                     {
+                        <li class="nav-item d-flex align-items-center me-2">
+                            <span class="text-white small">Xin chào, <strong>@userName</strong></span>
+                        </li>
                         <li class="nav-item">
                             <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
                                 <button type="submit" class="btn btn-outline-light btn-sm">Đăng xuất</button>

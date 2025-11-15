@@ -143,7 +143,7 @@ window.DatPhongApp = {
             khachHangData.forEach(item => {
                 const option = document.createElement('option');
                 option.value = item.maDatPhong;
-                option.textContent = item.tenKhachHang;
+                option.textContent = item.hoTen || item.tenKhachHang || '';
                 khachHangSelect.appendChild(option);
             });
 
@@ -153,7 +153,7 @@ window.DatPhongApp = {
             nhanVienData.forEach(item => {
                 const option = document.createElement('option');
                 option.value = item.maDatPhong;
-                option.textContent = item.tenNhanVien;
+                option.textContent = item.hoTen || item.tenNhanVien || '';
                 nhanVienSelect.appendChild(option);
             });
 

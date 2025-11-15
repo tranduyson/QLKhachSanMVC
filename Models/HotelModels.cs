@@ -67,18 +67,23 @@ namespace HotelManagement.Models
     public class DatPhong
     {
         public int maDatPhong { get; set; }
-        public int KhachHangId { get; set; }
-        public KhachHang? KhachHang { get; set; }
-        public int NhanVienId { get; set; }
-        public NhanVien? NhanVien { get; set; }
-        public DateTime NgayDat { get; set; }
-        public DateTime NgayNhan { get; set; }
-        public DateTime NgayTra { get; set; }
-        public string TrangThai { get; set; } = "DaDat";
-        public decimal TongTien { get; set; }
-        public List<ChiTietDatPhong>? ChiTietDatPhongs { get; set; }
-        public List<SuDungDichVu>? SuDungDichVus { get; set; }
+        public int maKhachHang { get; set; }
+        public KhachHang? khachHang { get; set; }
+        public int? maNhanVien { get; set; }
+        public NhanVien? nhanVien { get; set; }
+
+        public DateTime ngayDat { get; set; }
+        public DateTime ngayNhan { get; set; }
+        public DateTime ngayTra { get; set; }
+
+        public string trangThai { get; set; }
+        public decimal tongTien { get; set; }
+
+        public List<ChiTietDatPhong>? chiTietDatPhongs { get; set; }
+        public List<SuDungDichVu>? suDungDichVus { get; set; }
+        public List<ThanhToan>? thanhToans { get; set; }
     }
+
 
     public class ChiTietDatPhong
     {

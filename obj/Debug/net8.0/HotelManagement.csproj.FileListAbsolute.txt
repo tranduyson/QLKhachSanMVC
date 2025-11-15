@@ -5,6 +5,7 @@ D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.csproj.CoreCompile
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.MvcApplicationPartsAssemblyInfo.cache
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.RazorAssemblyInfo.cache
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.RazorAssemblyInfo.cs
+D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.sourcelink.json
 D:\QLKhachSSan\QLKhachSanMVC\bin\Debug\net8.0\HotelManagement.staticwebassets.runtime.json
 D:\QLKhachSSan\QLKhachSanMVC\bin\Debug\net8.0\HotelManagement.staticwebassets.endpoints.json
 D:\QLKhachSSan\QLKhachSanMVC\bin\Debug\net8.0\HotelManagement.exe
@@ -22,9 +23,9 @@ D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\staticwebassets\msbuild.build.Hote
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.HotelManagement.props
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.HotelManagement.props
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\staticwebassets.pack.json
+D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.dll
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\refint\HotelManagement.dll
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.pdb
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\HotelManagement.genruntimeconfig.cache
 D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\ref\HotelManagement.dll
-D:\QLKhachSSan\QLKhachSanMVC\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

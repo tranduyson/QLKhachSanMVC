@@ -29,13 +29,13 @@
             {
                 <tr>
                     <td>@item.maDatPhong</td>
-                    <td>@item.KhachHang?.hoTen</td>
-                    <td>@item.NhanVien?.hoTen</td>
-                    <td>@item.NgayNhan.ToString("dd/MM/yyyy")</td>
-                    <td>@item.NgayTra.ToString("dd/MM/yyyy")</td>
-                    <td>@item.TongTien.ToString("N0") đ</td>
+                    <td>@item.khachHang?.hoTen</td>
+                    <td>@item.nhanVien?.hoTen</td>
+                    <td>@item.ngayNhan.ToString("dd/MM/yyyy")</td>
+                    <td>@item.ngayTra.ToString("dd/MM/yyyy")</td>
+                    <td>@item.tongTien.ToString("N0") đ</td>
                     <td>
-                        <span class="badge bg-secondary">@item.TrangThai</span>
+                        <span class="badge bg-secondary">@item.trangThai</span>
                     </td>
                     <td class="text-end">
                         <a asp-action="Details" asp-route-id="@item.maDatPhong" class="btn btn-sm btn-outline-secondary">Chi tiết</a>

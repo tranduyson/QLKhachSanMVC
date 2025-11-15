@@ -199,13 +199,13 @@
                             {
                                 @foreach (var booking in Model.RecentBookings)
                                 {
-                                    var badgeColor = statusColors.TryGetValue(booking.TrangThai ?? string.Empty, out var color) ? color : "secondary";
+                                    var badgeColor = statusColors.TryGetValue(booking.trangThai ?? string.Empty, out var color) ? color : "secondary";
                                     <tr>
                                         <td>#@booking.maDatPhong</td>
-                                        <td>@booking.KhachHang?.hoTen</td>
-                                        <td>@booking.NgayDat.ToString("dd/MM/yyyy")</td>
-                                        <td><span class="badge bg-@badgeColor">@booking.TrangThai</span></td>
-                                        <td class="text-end">@booking.TongTien.ToString("N0") đ</td>
+                                        <td>@booking.khachHang?.hoTen</td>
+                                        <td>@booking.ngayDat.ToString("dd/MM/yyyy")</td>
+                                        <td><span class="badge bg-@badgeColor">@booking.trangThai</span></td>
+                                        <td class="text-end">@booking.tongTien.ToString("N0") đ</td>
                                     </tr>
                                 }
                             }

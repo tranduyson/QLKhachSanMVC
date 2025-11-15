@@ -30,12 +30,12 @@ namespace HotelManagement.Controllers
         {
             var model = new DatPhong
             {
-                NgayDat = DateTime.Today,
-                NgayNhan = DateTime.Today,
-                NgayTra = DateTime.Today.AddDays(1),
-                TrangThai = "DaDat",
-                ChiTietDatPhongs = new List<ChiTietDatPhong> { new(), new() },
-                SuDungDichVus = new List<SuDungDichVu> { new() }
+                ngayDat = DateTime.Today,
+                ngayNhan = DateTime.Today,
+                ngayTra = DateTime.Today.AddDays(1),
+                trangThai = "DaDat",
+                chiTietDatPhongs = new List<ChiTietDatPhong> { new(), new() },
+                suDungDichVus = new List<SuDungDichVu> { new() }
             };
 
             PopulateDropdowns(model);
@@ -54,15 +54,15 @@ namespace HotelManagement.Controllers
                 return View(model);
             }
 
-            model.TongTien = CalculateTotal(model);
+            model.tongTien = CalculateTotal(model);
             TempData["Message"] = "Đã tạo đặt phòng (demo).";
             return RedirectToAction(nameof(Index));
         }
 
         private void PopulateDropdowns(DatPhong model)
         {
-            ViewBag.KhachHangList = new SelectList(ApiDataProvider.GetKhachHangs(), "Id", "TenKhachHang", model.KhachHangId);
-            ViewBag.NhanVienList = new SelectList(ApiDataProvider.GetNhanViens(), "Id", "TenNhanVien", model.NhanVienId);
+            ViewBag.KhachHangList = new SelectList(ApiDataProvider.GetKhachHangs(), "maKhachHang", "hoTen", model.maKhachHang);
+            ViewBag.NhanVienList = new SelectList(ApiDataProvider.GetNhanViens(), "Id", "hoTen", model.maNhanVien);
             ViewBag.PhongOptions = ApiDataProvider.GetPhongs();
             ViewBag.DichVuOptions = ApiDataProvider.GetDichVus();
 
@@ -76,15 +76,15 @@ namespace HotelManagement.Controllers
 
             foreach (var item in statusItems)
             {
-                item.Selected = item.Value == model.TrangThai;
+                item.Selected = item.Value == model.trangThai;
             }
 
-            ViewBag.TrangThaiList = statusItems;
+            ViewBag.trangThaiList = statusItems;
         }
 
         private static void NormalizeCollections(DatPhong model)
         {
-            model.ChiTietDatPhongs = model.ChiTietDatPhongs?
+            model.chiTietDatPhongs = model.chiTietDatPhongs?
                 .Where(ct => ct.PhongId > 0 && ct.SoDem > 0)
                 .Select((ct, index) =>
                 {
@@ -93,7 +93,7 @@ namespace HotelManagement.Controllers
                 })
                 .ToList();
 
-            model.SuDungDichVus = model.SuDungDichVus?
+            model.suDungDichVus = model.suDungDichVus?
                 .Where(sv => sv.DichVuId > 0 && sv.SoLuong > 0)
                 .Select((sv, index) =>
                 {
@@ -105,8 +105,8 @@ namespace HotelManagement.Controllers
 
         private static decimal CalculateTotal(DatPhong model)
         {
-            var roomTotal = model.ChiTietDatPhongs?.Sum(ct => ct.ThanhTien) ?? 0m;
-            var serviceTotal = model.SuDungDichVus?.Sum(sv => sv.ThanhTien) ?? 0m;
+            var roomTotal = model.chiTietDatPhongs?.Sum(ct => ct.ThanhTien) ?? 0m;
+            var serviceTotal = model.suDungDichVus?.Sum(sv => sv.ThanhTien) ?? 0m;
             return roomTotal + serviceTotal;
         }
     }

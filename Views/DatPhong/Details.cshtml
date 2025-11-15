@@ -15,45 +15,45 @@
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Khách hàng</div>
-            <div class="fw-semibold">@Model.KhachHang?.hoTen</div>
-            <div class="text-muted small">@Model.KhachHang?.SoDienThoai</div>
+            <div class="fw-semibold">@Model.khachHang?.hoTen</div>
+            <div class="text-muted small">@Model.khachHang?.SoDienThoai</div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Nhân viên</div>
-            <div class="fw-semibold">@Model.NhanVien?.hoTen</div>
-            <div class="text-muted small">@Model.NhanVien?.Email</div>
+            <div class="fw-semibold">@Model.nhanVien?.hoTen</div>
+            <div class="text-muted small">@Model.nhanVien?.Email</div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Ngày đặt</div>
-            <div class="fw-semibold">@Model.NgayDat.ToString("dd/MM/yyyy")</div>
+            <div class="fw-semibold">@Model.ngayDat.ToString("dd/MM/yyyy")</div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Ngày nhận</div>
-            <div class="fw-semibold">@Model.NgayNhan.ToString("dd/MM/yyyy")</div>
+            <div class="fw-semibold">@Model.ngayNhan.ToString("dd/MM/yyyy")</div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Ngày trả</div>
-            <div class="fw-semibold">@Model.NgayTra.ToString("dd/MM/yyyy")</div>
+            <div class="fw-semibold">@Model.ngayTra.ToString("dd/MM/yyyy")</div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Trạng thái</div>
-            <span class="badge bg-primary">@Model.TrangThai</span>
+            <span class="badge bg-primary">@Model.trangThai</span>
         </div>
     </div>
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Tổng tiền</div>
-            <div class="fw-semibold fs-5 text-success">@Model.TongTien.ToString("N0") đ</div>
+            <div class="fw-semibold fs-5 text-success">@Model.tongTien.ToString("N0") đ</div>
         </div>
     </div>
 </div>
@@ -71,7 +71,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.ChiTietDatPhongs ?? Enumerable.Empty<HotelManagement.Models.ChiTietDatPhong>())
+            @foreach (var item in Model.chiTietDatPhongs ?? Enumerable.Empty<HotelManagement.Models.ChiTietDatPhong>())
             {
                 <tr>
                     <td>@item.Phong?.SoPhong</td>
@@ -97,7 +97,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.SuDungDichVus ?? Enumerable.Empty<HotelManagement.Models.SuDungDichVu>())
+            @foreach (var item in Model.suDungDichVus ?? Enumerable.Empty<HotelManagement.Models.SuDungDichVu>())
             {
                 <tr>
                     <td>@item.DichVu?.TenDichVu</td>

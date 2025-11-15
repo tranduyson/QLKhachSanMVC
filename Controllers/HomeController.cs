@@ -20,9 +20,9 @@ namespace HotelManagement.Controllers
             {
                 TotalRooms = rooms.Count,
                 AvailableRooms = rooms.Count(r => string.Equals(r.TinhTrang, "Trong", StringComparison.OrdinalIgnoreCase) || string.Equals(r.TinhTrang, "Trống", StringComparison.OrdinalIgnoreCase)),
-                TodaysBookings = bookings.Count(dp => dp.NgayDat.Date == today),
-                MonthlyRevenue = bookings.Where(dp => dp.NgayDat.Month == currentMonth && dp.NgayDat.Year == currentYear).Sum(dp => dp.TongTien),
-                RecentBookings = bookings.OrderByDescending(dp => dp.NgayDat).Take(5).ToList(),
+                TodaysBookings = bookings.Count(dp => dp.ngayDat.Date == today),
+                MonthlyRevenue = bookings.Where(dp => dp.ngayDat.Month == currentMonth && dp.ngayDat.Year == currentYear).Sum(dp => dp.tongTien),
+                RecentBookings = bookings.OrderByDescending(dp => dp.ngayDat).Take(5).ToList(),
                 RoomStatusBreakdown = rooms
                     .GroupBy(r => r.TinhTrang)
                     .ToDictionary(g => g.Key, g => g.Count())

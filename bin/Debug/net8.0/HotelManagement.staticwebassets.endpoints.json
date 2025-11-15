@@ -85,51 +85,6 @@
       ]
     },
     {
-      "Route": "js/datPhong.dxtkso027c.js",
-      "AssetFile": "js/datPhong.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "28012"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 10 Nov 2025 14:32:02 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dxtkso027c"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU="
-        },
-        {
-          "Name": "label",
-          "Value": "js/datPhong.js"
-        }
-      ]
-    },
-    {
       "Route": "js/datPhong.js",
       "AssetFile": "js/datPhong.js",
       "Selectors": [],
@@ -144,7 +99,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "28012"
+          "Value": "28052"
         },
         {
           "Name": "Content-Type",
@@ -152,17 +107,62 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU=\""
+          "Value": "\"rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 10 Nov 2025 14:32:02 GMT"
+          "Value": "Sat, 15 Nov 2025 15:02:16 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-gVAPrQ2sVQxdfvcaxYjuVB7FQx86iXwpwdgO+N0IkPU="
+          "Value": "sha256-rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE="
+        }
+      ]
+    },
+    {
+      "Route": "js/datPhong.kuu6ek5yl5.js",
+      "AssetFile": "js/datPhong.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "28052"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 15 Nov 2025 15:02:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kuu6ek5yl5"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rE8JLX7bnXtc0XYRgZ5UwMtxENXrVuFIwXorR5eLWxE="
+        },
+        {
+          "Name": "label",
+          "Value": "js/datPhong.js"
         }
       ]
     },
