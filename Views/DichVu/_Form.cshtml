@@ -4,12 +4,12 @@
 
 <div class="row g-3">
     <div class="col-md-6">
-        <label asp-for="TenDichVu" class="form-label"></label>
+        <label asp-for="TenDichVu" class="form-label">Tên dịch vụ</label>
         <input asp-for="TenDichVu" class="form-control" />
         <span asp-validation-for="TenDichVu" class="text-danger"></span>
     </div>
     <div class="col-md-6">
-        <label asp-for="donGia" class="form-label"></label>
+        <label asp-for="donGia" class="form-label">Đơn giá</label>
         <div class="input-group">
             <input asp-for="donGia" class="form-control" type="number" step="1000" min="0" />
             <span class="input-group-text">đ</span>
@@ -17,7 +17,7 @@
         <span asp-validation-for="donGia" class="text-danger"></span>
     </div>
     <div class="col-12">
-        <label asp-for="ghiChu" class="form-label"></label>
+        <label asp-for="ghiChu" class="form-label">Ghi chú</label>
         <textarea asp-for="ghiChu" class="form-control" rows="3"></textarea>
         <span asp-validation-for="ghiChu" class="text-danger"></span>
     </div>

@@ -4,12 +4,12 @@
 
 <div class="row g-3">
     <div class="col-md-6">
-        <label asp-for="DatPhongId" class="form-label">Đặt phòng</label>
-        <select asp-for="DatPhongId" asp-items="ViewBag.DatPhongList" class="form-select"></select>
-        <span asp-validation-for="DatPhongId" class="text-danger"></span>
+        <label asp-for="maDatPhong" class="form-label">Đặt phòng</label>
+        <select asp-for="maDatPhong" asp-items="ViewBag.DatPhongList" class="form-select"></select>
+        <span asp-validation-for="maDatPhong" class="text-danger"></span>
     </div>
     <div class="col-md-6">
-        <label asp-for="SoTien" class="form-label"></label>
+        <label asp-for="SoTien" class="form-label">Số tiền</label>
         <div class="input-group">
             <input asp-for="SoTien" class="form-control" type="number" step="1000" min="0" />
             <span class="input-group-text">đ</span>
@@ -17,12 +17,12 @@
         <span asp-validation-for="SoTien" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="NgayThanhToan" class="form-label"></label>
+        <label asp-for="NgayThanhToan" class="form-label">Ngày thanh toán</label>
         <input asp-for="NgayThanhToan" class="form-control" type="date" />
         <span asp-validation-for="NgayThanhToan" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="PhuongThuc" class="form-label"></label>
+        <label asp-for="PhuongThuc" class="form-label">Phương thức</label>
         <select asp-for="PhuongThuc" class="form-select">
             <option value="TienMat">Tiền mặt</option>
             <option value="ChuyenKhoan">Chuyển khoản</option>
@@ -31,7 +31,7 @@
         <span asp-validation-for="PhuongThuc" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="TrangThai" class="form-label"></label>
+        <label asp-for="TrangThai" class="form-label">Trạng thái</label>
         <select asp-for="TrangThai" asp-items="ViewBag.TrangThaiList" class="form-select"></select>
         <span asp-validation-for="TrangThai" class="text-danger"></span>
     </div>

@@ -11,8 +11,16 @@ namespace HotelManagement.Controllers
     {
         public IActionResult Index()
         {
-            var payments = ApiDataProvider.GetThanhToans();
-            return View(payments);
+            try
+            {
+                var payments = ApiDataProvider.GetThanhToans();
+                return View(payments);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+           
         }
 
         public IActionResult Details(int maDatPhong)
@@ -31,10 +39,9 @@ namespace HotelManagement.Controllers
             var model = new ThanhToan
             {
                 NgayThanhToan = DateTime.Today,
-                TrangThai = "DaThanhToan"
+                TrangThai = true
             };
 
-            PopulateBookingOptions(model.DatPhongId, model.TrangThai);
             return View(model);
         }
 
@@ -42,7 +49,6 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ThanhToan model)
         {
-            PopulateBookingOptions(model.DatPhongId, model.TrangThai);
 
             if (!ModelState.IsValid)
             {
@@ -61,7 +67,6 @@ namespace HotelManagement.Controllers
                 return NotFound();
             }
 
-            PopulateBookingOptions(payment.DatPhongId, payment.TrangThai);
             return View(payment);
         }
 
@@ -74,7 +79,6 @@ namespace HotelManagement.Controllers
                 return BadRequest();
             }
 
-            PopulateBookingOptions(model.DatPhongId, model.TrangThai);
 
             if (!ModelState.IsValid)
             {
@@ -97,34 +101,6 @@ namespace HotelManagement.Controllers
 
             TempData["Message"] = "Đã xóa phiếu thanh toán (demo).";
             return RedirectToAction(nameof(Index));
-        }
-
-        private void PopulateBookingOptions(int selectedBookingId, string? selectedStatus)
-        {
-            var bookingItems = ApiDataProvider.GetDatPhongs()
-                .Select(dp => new SelectListItem
-                {
-                    Value = dp.maDatPhong.ToString(),
-                    Text = $"#{dp.maDatPhong} - {dp.KhachHang?.hoTen} ({dp.NgayNhan:dd/MM} - {dp.NgayTra:dd/MM})",
-                    Selected = dp.maDatPhong == selectedBookingId
-                })
-                .ToList();
-
-            ViewBag.DatPhongList = bookingItems;
-
-            var statusItems = new List<SelectListItem>
-            {
-                new() { Value = "DaThanhToan", Text = "Đã thanh toán" },
-                new() { Value = "ChuaThanhToan", Text = "Chưa thanh toán" },
-                new() { Value = "HoanTien", Text = "Hoàn tiền" }
-            };
-
-            foreach (var item in statusItems)
-            {
-                item.Selected = item.Value == selectedStatus;
-            }
-
-            ViewBag.TrangThaiList = statusItems;
         }
     }
 }

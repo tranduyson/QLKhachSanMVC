@@ -13,7 +13,7 @@
         </div>
     }
     <div class="col-md-4">
-        <label asp-for="SoPhong" class="form-label"></label>
+        <label asp-for="SoPhong" class="form-label">Số Phòng</label>
         <input asp-for="SoPhong" class="form-control" />
         <span asp-validation-for="SoPhong" class="text-danger"></span>
     </div>
@@ -23,7 +23,7 @@
         <span asp-validation-for="LoaiPhongId" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="TinhTrang" class="form-label"></label>
+        <label asp-for="TinhTrang" class="form-label">Tình trạng</label>
         <select asp-for="TinhTrang" asp-items="ViewBag.TinhTrangList" class="form-select"></select>
         <span asp-validation-for="TinhTrang" class="text-danger"></span>
     </div>

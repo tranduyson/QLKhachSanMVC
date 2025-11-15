@@ -39,11 +39,21 @@ namespace HotelManagement.Models
 
     public class NhanVien
     {
-        public int Id { get; set; }
+        // API returns 'maNhanVien' and other fields; keep aliases for compatibility
+        public int MaNhanVien { get; set; }
+        public int Id
+        {
+            get => MaNhanVien;
+            set => MaNhanVien = value;
+        }
+
+        public string TenDangNhap { get; set; } = string.Empty;
+        public string MatKhau { get; set; } = string.Empty;
         public string hoTen { get; set; } = string.Empty;
         public string? SoDienThoai { get; set; }
         public string? Email { get; set; }
         public string? ChucVu { get; set; }
+        public int TrangThai { get; set; } = 1;
     }
 
     public class DichVu
@@ -97,12 +107,13 @@ namespace HotelManagement.Models
     public class ThanhToan
     {
         public int maThanhToan { get; set; }
-        public int DatPhongId { get; set; }
+        public int maDatPhong { get; set; }
         public DatPhong? DatPhong { get; set; }
         public decimal SoTien { get; set; }
         public DateTime NgayThanhToan { get; set; }
         public string PhuongThuc { get; set; } = "TienMat";
-        public string TrangThai { get; set; } = "DaThanhToan";
+        public bool TrangThai { get; set; } = false;
+        public string ghiChu { get; set; }
     }
 
     // Request models for API

@@ -28,6 +28,21 @@
                     <li class="nav-item"><a class="nav-link" asp-controller="DatPhong" asp-action="Index">Đặt phòng</a></li>
                     <li class="nav-item"><a class="nav-link" asp-controller="ThanhToan" asp-action="Index">Thanh toán</a></li>
                 </ul>
+
+                <ul class="navbar-nav ms-3">
+                    @if (Context.Request.Cookies.ContainsKey("AuthUser"))
+                    {
+                        <li class="nav-item">
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-light btn-sm">Đăng xuất</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="btn btn-light btn-sm" asp-controller="Account" asp-action="Login">Đăng nhập</a></li>
+                    }
+                </ul>
             </nav>
         </div>
     </header>

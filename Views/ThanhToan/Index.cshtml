@@ -28,12 +28,19 @@
             {
                 <tr>
                     <td>@item.maThanhToan</td>
-                    <td>#@item.DatPhongId</td>
+                    <td>#@item.maDatPhong</td>
                     <td>@item.SoTien.ToString("N0") đ</td>
                     <td>@item.NgayThanhToan.ToString("dd/MM/yyyy")</td>
                     <td>@item.PhuongThuc</td>
                     <td>
-                        <span class="badge bg-success">@item.TrangThai</span>
+                        @if (item.TrangThai)
+                        {
+                            <span class="badge bg-success">Đã thanh toán</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Chưa thanh toán</span>
+                        }
                     </td>
                     <td class="text-end">
                         <a asp-action="Details" asp-route-id="@item.maThanhToan" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>
@@ -45,5 +52,6 @@
                 </tr>
             }
         </tbody>
+
     </table>
 </div>
