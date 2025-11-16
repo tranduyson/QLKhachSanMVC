@@ -32,7 +32,7 @@ namespace HotelManagement.Controllers
             }
 
             // Set a simple auth cookie with user id and name (JSON). For production use proper authentication.
-            var payload = JsonSerializer.Serialize(new { Id = user.Id, Name = user.hoTen });
+            var payload = JsonSerializer.Serialize(new { Id = user.Id, Name = user.HoTen });
             Response.Cookies.Append("AuthUser", payload, new CookieOptions { HttpOnly = true, Secure = Request.IsHttps });
 
             if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))

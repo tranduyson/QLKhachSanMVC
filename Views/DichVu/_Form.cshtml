@@ -16,7 +16,12 @@
         </div>
         <span asp-validation-for="donGia" class="text-danger"></span>
     </div>
-    <div class="col-12">
+    <div class="col-md-6">
+        <label asp-for="donViTinh" class="form-label">Đơn vị tính</label>
+        <input asp-for="donViTinh" class="form-control" />
+        <span asp-validation-for="donViTinh" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
         <label asp-for="ghiChu" class="form-label">Ghi chú</label>
         <textarea asp-for="ghiChu" class="form-control" rows="3"></textarea>
         <span asp-validation-for="ghiChu" class="text-danger"></span>

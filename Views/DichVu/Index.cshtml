@@ -17,6 +17,7 @@
                 <th scope="col">Mã dịch vụ</th>
                 <th scope="col">Tên dịch vụ</th>
                 <th scope="col">Ghi chú</th>
+                <th scope="col">Đơn vị tính</th>
                 <th scope="col">Giá</th>
                 <th scope="col" class="text-end">Thao tác</th>
             </tr>
@@ -28,6 +29,7 @@
                     <td>@item.maDichVu</td>
                     <td class="fw-semibold">@item.TenDichVu</td>
                     <td class="text-muted">@item.ghiChu</td>
+                    <td class="text-muted">@item.donViTinh</td>
                     <td>@item.donGia.ToString("N0") đ</td>
                     <td class="text-end">
                         <a asp-action="Details" asp-route-maDichVu="@item.maDichVu" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>

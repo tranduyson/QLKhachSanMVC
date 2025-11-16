@@ -106,29 +106,76 @@ namespace HotelManagement.Models
         public static bool DeleteLoaiPhong(int id)
             => DeleteFromApiAsync($"api/LoaiPhong/{id}").GetAwaiter().GetResult();
 
+
+
+
         public static IReadOnlyList<Phong> GetPhongs()
             => GetFromApi<List<Phong>>("api/Phong") ?? new List<Phong>();
 
         public static Phong? GetPhong(int id)
             => GetFromApi<Phong>($"api/Phong/{id}");
+        public static Phong? CreatePhong(Phong Phong)
+           => PostToApiAsync<Phong>("api/Phong", Phong).GetAwaiter().GetResult();
+
+        public static bool UpdatePhong(Phong Phong)
+             => PutToApiAsync($"api/Phong/{Phong.MaPhong}", Phong).GetAwaiter().GetResult();
+
+        public static bool DeletePhong(int id)
+            => DeleteFromApiAsync($"api/Phong/{id}").GetAwaiter().GetResult();
+
+
+
+
+
 
         public static IReadOnlyList<KhachHang> GetKhachHangs()
             => GetFromApi<List<KhachHang>>("api/KhachHang") ?? new List<KhachHang>();
 
         public static KhachHang? GetKhachHang(int id)
             => GetFromApi<KhachHang>($"api/KhachHang/{id}");
+        public static KhachHang? CreateKhachHang(KhachHang KhachHang)
+           => PostToApiAsync<KhachHang>("api/KhachHang", KhachHang).GetAwaiter().GetResult();
+
+        public static bool UpdateKhachHang(KhachHang KhachHang)
+            => PutToApiAsync($"api/KhachHang/{KhachHang.maKhachHang}", KhachHang).GetAwaiter().GetResult();
+
+        public static bool DeleteKhachHang(int id)
+            => DeleteFromApiAsync($"api/KhachHang/{id}").GetAwaiter().GetResult();
+
+
 
         public static IReadOnlyList<NhanVien> GetNhanViens()
             => GetFromApi<List<NhanVien>>("api/NhanVien") ?? new List<NhanVien>();
 
         public static NhanVien? GetNhanVien(int id)
             => GetFromApi<NhanVien>($"api/NhanVien/{id}");
+        public static NhanVien? CreateNhanVien(NhanVien nv)
+            => PostToApiAsync<NhanVien>("api/NhanVien", nv).GetAwaiter().GetResult();
+
+        public static bool UpdateNhanVien(NhanVien nv)
+            => PutToApiAsync($"api/NhanVien/{nv.MaNhanVien}", nv).GetAwaiter().GetResult();
+
+        public static bool DeleteNhanVien(int id)
+            => DeleteFromApiAsync($"api/NhanVien/{id}").GetAwaiter().GetResult();
+
+
 
         public static IReadOnlyList<DichVu> GetDichVus()
             => GetFromApi<List<DichVu>>("api/DichVu") ?? new List<DichVu>();
 
         public static DichVu? GetDichVu(int id)
             => GetFromApi<DichVu>($"api/DichVu/{id}");
+        public static DichVu? CreateDichVu(DichVu DichVu)
+           => PostToApiAsync<DichVu>("api/DichVu", DichVu).GetAwaiter().GetResult();
+
+        public static bool UpdateDichVu(DichVu DichVu)
+            => PutToApiAsync($"api/DichVu/{DichVu.maDichVu}", DichVu).GetAwaiter().GetResult();
+
+        public static bool DeleteDichVu(int id)
+            => DeleteFromApiAsync($"api/DichVu/{id}").GetAwaiter().GetResult();
+          
+
+
 
         public static IReadOnlyList<DatPhong> GetDatPhongs()
             => GetFromApi<List<DatPhong>>("api/DatPhong") ?? new List<DatPhong>();

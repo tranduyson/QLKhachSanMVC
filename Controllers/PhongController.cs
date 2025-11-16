@@ -16,10 +16,17 @@ namespace HotelManagement.Controllers
 
         public IActionResult Details(int id)
         {
+            if (id <= 0)
+            {
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
+            }
+
             var phong = ApiDataProvider.GetPhong(id);
             if (phong is null)
             {
-                return NotFound();
+                TempData["Error"] = "Không tìm thấy phòng với ID này.";
+                return RedirectToAction(nameof(Index));
             }
 
             return View(phong);
@@ -35,23 +42,50 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Phong model)
         {
+            // Set ID = 0 cho bản ghi mới
+            model.Id = 0;
+
             PopulateDropdowns(model.LoaiPhongId, model.TinhTrang);
+
+            // Validate SoPhong
+            if (string.IsNullOrWhiteSpace(model.SoPhong))
+            {
+                ModelState.AddModelError("SoPhong", "Số phòng không được để trống.");
+            }
+            if (model.LoaiPhongId <= 0)
+            {
+                ModelState.AddModelError("LoaiPhongId", "Vui lòng chọn loại phòng.");
+            }
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            TempData["Message"] = "Đã tạo phòng mới (demo).";
+            var result = ApiDataProvider.CreatePhong(model);
+            if (result is null)
+            {
+                TempData["Error"] = "Không thể tạo phòng. Vui lòng kiểm tra API hoặc dữ liệu nhập.";
+                return View(model);
+            }
+
+            TempData["Message"] = "Đã tạo phòng mới thành công.";
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Edit(int id)
         {
+            if (id <= 0)
+            {
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
+            }
+
             var phong = ApiDataProvider.GetPhong(id);
             if (phong is null)
             {
-                return NotFound();
+                TempData["Error"] = "Không tìm thấy phòng với ID này.";
+                return RedirectToAction(nameof(Index));
             }
 
             PopulateDropdowns(phong.LoaiPhongId, phong.TinhTrang);
@@ -62,19 +96,43 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Phong model)
         {
+            if (id <= 0)
+            {
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
+            }
+
             if (id != model.Id)
             {
-                return BadRequest();
+                TempData["Error"] = "ID không khớp.";
+                return RedirectToAction(nameof(Index));
             }
 
             PopulateDropdowns(model.LoaiPhongId, model.TinhTrang);
+
+            // Validate
+            if (string.IsNullOrWhiteSpace(model.SoPhong))
+            {
+                ModelState.AddModelError("SoPhong", "Số phòng không được để trống.");
+            }
+            if (model.LoaiPhongId <= 0)
+            {
+                ModelState.AddModelError("LoaiPhongId", "Vui lòng chọn loại phòng.");
+            }
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            TempData["Message"] = "Đã cập nhật phòng (demo).";
+            var success = ApiDataProvider.UpdatePhong(model);
+            if (!success)
+            {
+                TempData["Error"] = "Không thể cập nhật phòng. Vui lòng thử lại.";
+                return View(model);
+            }
+
+            TempData["Message"] = "Đã cập nhật phòng thành công.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -82,13 +140,27 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
+            if (id <= 0)
+            {
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
+            }
+
             var phong = ApiDataProvider.GetPhong(id);
             if (phong is null)
             {
-                return NotFound();
+                TempData["Error"] = "Không tìm thấy phòng với ID này.";
+                return RedirectToAction(nameof(Index));
             }
 
-            TempData["Message"] = "Đã xóa phòng (demo).";
+            var success = ApiDataProvider.DeletePhong(id);
+            if (!success)
+            {
+                TempData["Error"] = "Không thể xóa phòng. Vui lòng thử lại.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["Message"] = "Đã xóa phòng thành công.";
             return RedirectToAction(nameof(Index));
         }
 

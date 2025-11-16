@@ -49,7 +49,7 @@ namespace HotelManagement.Models
 
         public string TenDangNhap { get; set; } = string.Empty;
         public string MatKhau { get; set; } = string.Empty;
-        public string hoTen { get; set; } = string.Empty;
+        public string HoTen { get; set; } = string.Empty;
         public string? SoDienThoai { get; set; }
         public string? Email { get; set; }
         public string? ChucVu { get; set; }
@@ -61,6 +61,7 @@ namespace HotelManagement.Models
         public int maDichVu { get; set; }
         public string TenDichVu { get; set; } = string.Empty;
         public string? ghiChu { get; set; }
+        public string? donViTinh { get; set; }
         public decimal donGia { get; set; }
     }
 
