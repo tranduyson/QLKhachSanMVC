@@ -68,6 +68,29 @@
         </div>
     </header>
 
+    @{
+        var _msg = TempData["Message"] as string;
+        var _err = TempData["Error"] as string;
+    }
+    @if (!string.IsNullOrEmpty(_msg))
+    {
+        <div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @_msg
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(_err))
+    {
+        <div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @_err
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+
     <main class="container py-4">
         <div class="card shadow-sm border-0">
             <div class="card-body">
@@ -85,6 +108,20 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <partial name="_ValidationScriptsPartial" />
+    <!-- Expose API base URL to client-side scripts. Prefer runtime origin so port mismatches don't break fetch. -->
+    <script>
+        // Prefer explicit environment override, otherwise use the current page origin
+        (function(){
+            var envBase = @(new Microsoft.AspNetCore.Html.HtmlString("\"" + (Environment.GetEnvironmentVariable("HOTEL_API_BASE") ?? "") + "\""));
+            if (envBase && envBase !== "") {
+                window.HotelApiBase = envBase;
+            } else {
+                window.HotelApiBase = window.location.origin + '/';
+            }
+            if (!window.HotelApiBase.endsWith('/')) { window.HotelApiBase = window.HotelApiBase + '/'; }
+            window.HotelApiBaseWithApi = window.HotelApiBase.replace(/\/$/, '') + '/api';
+        })();
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

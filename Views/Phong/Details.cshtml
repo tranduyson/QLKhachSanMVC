@@ -24,11 +24,17 @@
             <span class="badge bg-@GetStatusColor(Model.TinhTrang)">@GetStatusLabel(Model.TinhTrang)</span>
         </div>
     </div>
+    @{
+        var loaiNames = ViewBag.LoaiPhongNames as System.Collections.Generic.Dictionary<int,string> ?? new System.Collections.Generic.Dictionary<int,string>();
+        var loaiPrices = ViewBag.LoaiPhongPrices as System.Collections.Generic.Dictionary<int,decimal> ?? new System.Collections.Generic.Dictionary<int,decimal>();
+        var tenLoai = Model.LoaiPhong?.TenLoaiPhong ?? (loaiNames.ContainsKey(Model.maLoaiPhong) ? loaiNames[Model.maLoaiPhong] : "-");
+        var giaLoai = Model.LoaiPhong != null ? Model.LoaiPhong.GiaMoiDem : (loaiPrices.ContainsKey(Model.maLoaiPhong) ? loaiPrices[Model.maLoaiPhong] : 0m);
+    }
     <div class="col-md-6">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Loại phòng</div>
-            <div class="fw-semibold fs-5">@Model.LoaiPhong?.TenLoaiPhong</div>
-            <div class="text-muted">Giá: @Model.LoaiPhong?.GiaMoiDem.ToString("N0") đ/đêm</div>
+            <div class="fw-semibold fs-5">@tenLoai</div>
+            <div class="text-muted">Giá: @giaLoai.ToString("N0") đ/đêm</div>
         </div>
     </div>
 </div>
@@ -42,6 +48,7 @@
             <i class="bi bi-pencil-square me-1"></i> Sửa
         </a>
         <form asp-action="Delete" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa phòng này?');">
+            @Html.AntiForgeryToken()
             <button type="submit" class="btn btn-danger">
                 <i class="bi bi-trash me-1"></i> Xóa
             </button>

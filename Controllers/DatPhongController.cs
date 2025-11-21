@@ -79,7 +79,7 @@ namespace HotelManagement.Controllers
                 item.Selected = item.Value == model.trangThai;
             }
 
-            ViewBag.trangThaiList = statusItems;
+            ViewBag.TrangThaiList = statusItems;
         }
 
         private static void NormalizeCollections(DatPhong model)

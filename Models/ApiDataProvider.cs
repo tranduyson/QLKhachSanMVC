@@ -22,9 +22,16 @@ namespace HotelManagement.Models
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
+            // Allow overriding the API base URL via environment variable for flexibility when ports change.
+            // Usage (PowerShell): $env:HOTEL_API_BASE = 'https://localhost:7160/'; dotnet run
+            var envUrl = Environment.GetEnvironmentVariable("HOTEL_API_BASE");
+            var baseUrl = string.IsNullOrWhiteSpace(envUrl) ? "https://localhost:7158/" : envUrl;
+
+            if (!baseUrl.EndsWith("/")) baseUrl += "/";
+
             _httpClient = new HttpClient(handler)
             {
-                BaseAddress = new Uri("https://localhost:7158/")
+                BaseAddress = new Uri(baseUrl)
             };
         }
 

@@ -46,6 +46,7 @@
                         <a asp-action="Details" asp-route-id="@item.maThanhToan" class="btn btn-sm btn-outline-secondary me-1">Chi tiết</a>
                         <a asp-action="Edit" asp-route-id="@item.maThanhToan" class="btn btn-sm btn-outline-primary me-1">Sửa</a>
                         <form asp-action="Delete" asp-route-id="@item.maThanhToan" method="post" class="d-inline" onsubmit="return confirm('Bạn có chắc muốn xóa thanh toán này?');">
+                            @Html.AntiForgeryToken()
                             <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
                         </form>
                     </td>

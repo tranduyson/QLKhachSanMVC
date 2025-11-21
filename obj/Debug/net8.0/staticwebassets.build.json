@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fEmR85I4EOFDjtztqPZFtZJy7wDN8qR7NTCJlJt+lZ0=",
+  "Hash": "NhiYmb9oEseUXY98h5mOgSHwzfla+q/ct0x/pyDnav4=",
   "Source": "HotelManagement",
   "BasePath": "_content/HotelManagement",
   "Mode": "Default",
@@ -94,8 +94,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "1nqyvejzh8",
-      "Integrity": "XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg=",
+      "Fingerprint": "x57m8mebmf",
+      "Integrity": "O3In6iuZ+i/clI3ok/4y3LOzfdol54byCPsVUNtTK1E=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
@@ -349,51 +349,6 @@
       ]
     },
     {
-      "Route": "js/site.1nqyvejzh8.js",
-      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9110"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 25 Oct 2025 14:11:41 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "1nqyvejzh8"
-        },
-        {
-          "Name": "label",
-          "Value": "js/site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg="
-        }
-      ]
-    },
-    {
       "Route": "js/site.js",
       "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
       "Selectors": [],
@@ -404,7 +359,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9110"
+          "Value": "9203"
         },
         {
           "Name": "Content-Type",
@@ -412,11 +367,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg=\""
+          "Value": "\"O3In6iuZ+i/clI3ok/4y3LOzfdol54byCPsVUNtTK1E=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 25 Oct 2025 14:11:41 GMT"
+          "Value": "Thu, 20 Nov 2025 18:14:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -426,7 +381,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-XSIamu7vII5ssI1Svh6YMpDm/MKS1CMjw2SJBrg3mqg="
+          "Value": "sha256-O3In6iuZ+i/clI3ok/4y3LOzfdol54byCPsVUNtTK1E="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.x57m8mebmf.js",
+      "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9203"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"O3In6iuZ+i/clI3ok/4y3LOzfdol54byCPsVUNtTK1E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 20 Nov 2025 18:14:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "x57m8mebmf"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-O3In6iuZ+i/clI3ok/4y3LOzfdol54byCPsVUNtTK1E="
         }
       ]
     }

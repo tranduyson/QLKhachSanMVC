@@ -11,6 +11,9 @@ namespace HotelManagement.Controllers
         public IActionResult Index()
         {
             var phongs = ApiDataProvider.GetPhongs();
+            var loaiPhongs = ApiDataProvider.GetLoaiPhongs();
+            ViewBag.LoaiPhongNames = loaiPhongs.ToDictionary(lp => lp.Id, lp => lp.TenLoaiPhong);
+            ViewBag.LoaiPhongPrices = loaiPhongs.ToDictionary(lp => lp.Id, lp => lp.GiaMoiDem);
             return View(phongs);
         }
 
@@ -29,6 +32,11 @@ namespace HotelManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // Provide LoaiPhong lookup in case API doesn't populate nested LoaiPhong
+            var loaiPhongs = ApiDataProvider.GetLoaiPhongs();
+            ViewBag.LoaiPhongNames = loaiPhongs.ToDictionary(lp => lp.Id, lp => lp.TenLoaiPhong);
+            ViewBag.LoaiPhongPrices = loaiPhongs.ToDictionary(lp => lp.Id, lp => lp.GiaMoiDem);
+
             return View(phong);
         }
 
@@ -45,16 +53,16 @@ namespace HotelManagement.Controllers
             // Set ID = 0 cho bản ghi mới
             model.Id = 0;
 
-            PopulateDropdowns(model.LoaiPhongId, model.TinhTrang);
+            PopulateDropdowns(model.maLoaiPhong, model.TinhTrang);
 
             // Validate SoPhong
             if (string.IsNullOrWhiteSpace(model.SoPhong))
             {
                 ModelState.AddModelError("SoPhong", "Số phòng không được để trống.");
             }
-            if (model.LoaiPhongId <= 0)
+            if (model.maLoaiPhong <= 0)
             {
-                ModelState.AddModelError("LoaiPhongId", "Vui lòng chọn loại phòng.");
+                ModelState.AddModelError("maLoaiPhong", "Vui lòng chọn loại phòng.");
             }
 
             if (!ModelState.IsValid)
@@ -88,7 +96,7 @@ namespace HotelManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            PopulateDropdowns(phong.LoaiPhongId, phong.TinhTrang);
+            PopulateDropdowns(phong.maLoaiPhong, phong.TinhTrang);
             return View(phong);
         }
 
@@ -108,14 +116,17 @@ namespace HotelManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            PopulateDropdowns(model.LoaiPhongId, model.TinhTrang);
+            // Ensure MaPhong (used by API) is populated from Id
+            model.MaPhong = model.Id;
+
+            PopulateDropdowns(model.maLoaiPhong, model.TinhTrang);
 
             // Validate
             if (string.IsNullOrWhiteSpace(model.SoPhong))
             {
                 ModelState.AddModelError("SoPhong", "Số phòng không được để trống.");
             }
-            if (model.LoaiPhongId <= 0)
+            if (model.maLoaiPhong <= 0)
             {
                 ModelState.AddModelError("LoaiPhongId", "Vui lòng chọn loại phòng.");
             }

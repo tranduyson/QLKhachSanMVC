@@ -5,7 +5,8 @@
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
 
-<form asp-action="Edit" asp-route-maThanhToan="@Model.maThanhToan" method="post" class="needs-valmaThanhToanation" novalmaThanhToanate>
-    <input type="hmaThanhToanden" asp-for="maThanhToan" />
+<form asp-action="Edit" asp-route-id="@Model.maThanhToan" method="post" class="needs-validation" novalidate>
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="maThanhToan" />
     <partial name="_Form" />
 </form>

@@ -22,7 +22,7 @@ namespace HotelManagement.Models
         public int Id { get; set; }
         public int MaPhong { get; set; }
         public string SoPhong { get; set; } = string.Empty;
-        public int LoaiPhongId { get; set; }
+        public int maLoaiPhong { get; set; }
         public LoaiPhong? LoaiPhong { get; set; }
         public string TinhTrang { get; set; } = "Trong";
     }

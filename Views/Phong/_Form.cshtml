@@ -2,6 +2,7 @@
 
 <partial name="_ValidationSummary" />
 
+@Html.AntiForgeryToken()
 <input type="hidden" asp-for="Id" />
 
 <div class="row g-3">
@@ -18,9 +19,9 @@
         <span asp-validation-for="SoPhong" class="text-danger"></span>
     </div>
     <div class="col-md-4">
-        <label asp-for="LoaiPhongId" class="form-label">Loại phòng</label>
-        <select asp-for="LoaiPhongId" asp-items="ViewBag.LoaiPhongs" class="form-select"></select>
-        <span asp-validation-for="LoaiPhongId" class="text-danger"></span>
+        <label asp-for="maLoaiPhong" class="form-label">Loại phòng</label>
+        <select asp-for="maLoaiPhong" asp-items="ViewBag.LoaiPhongs" class="form-select"></select>
+        <span asp-validation-for="maLoaiPhong" class="text-danger"></span>
     </div>
     <div class="col-md-4">
         <label asp-for="TinhTrang" class="form-label">Tình trạng</label>

@@ -4,7 +4,8 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "HOTEL_API_BASE": "http://localhost:5245/"
       },
       "applicationUrl": "https://localhost:57680;http://localhost:57681"
     }

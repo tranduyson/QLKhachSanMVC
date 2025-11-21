@@ -1,7 +1,7 @@
 // Hotel Management System - Main JavaScript File
 // Base API configuration
 const API_CONFIG = {
-    baseUrl: 'https://localhost:7158/api',
+    baseUrl: (typeof window !== 'undefined' && window.HotelApiBaseWithApi) ? window.HotelApiBaseWithApi : 'https://localhost:7158/api',
     timeout: 30000
 };
 
