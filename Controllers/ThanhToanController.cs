@@ -23,12 +23,19 @@ namespace HotelManagement.Controllers
            
         }
 
-        public IActionResult Details(int maDatPhong)
+        public IActionResult Details(int id)
         {
-            var payment = ApiDataProvider.GetThanhToan(maDatPhong);
+            if (id <= 0)
+            {
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var payment = ApiDataProvider.GetThanhToan(id);
             if (payment is null)
             {
-                return NotFound();
+                TempData["Error"] = "Không tìm thấy thanh toán này.";
+                return RedirectToAction(nameof(Index));
             }
 
             return View(payment);
@@ -49,13 +56,22 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ThanhToan model)
         {
-
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            TempData["Message"] = "Đã tạo phiếu thanh toán (demo).";
+            // Ensure new record id = 0
+            model.maThanhToan = 0;
+
+            var created = ApiDataProvider.CreateThanhToan(model);
+            if (created is null)
+            {
+                TempData["Error"] = "Không thể tạo thanh toán. Vui lòng kiểm tra API.";
+                return View(model);
+            }
+
+            TempData["Message"] = "Đã tạo phiếu thanh toán thành công.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -74,18 +90,31 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, ThanhToan model)
         {
-            if (id != model.maThanhToan)
+            if (id <= 0)
             {
-                return BadRequest();
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
             }
 
+            if (id != model.maThanhToan)
+            {
+                TempData["Error"] = "ID không khớp.";
+                return RedirectToAction(nameof(Index));
+            }
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            TempData["Message"] = "Đã cập nhật thanh toán (demo).";
+            var success = ApiDataProvider.UpdateThanhToan(model);
+            if (!success)
+            {
+                TempData["Error"] = "Không thể cập nhật thanh toán. Vui lòng thử lại.";
+                return View(model);
+            }
+
+            TempData["Message"] = "Đã cập nhật thanh toán thành công.";
             return RedirectToAction(nameof(Index));
         }
 
@@ -93,13 +122,27 @@ namespace HotelManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
+            if (id <= 0)
+            {
+                TempData["Error"] = "ID không hợp lệ.";
+                return RedirectToAction(nameof(Index));
+            }
+
             var payment = ApiDataProvider.GetThanhToan(id);
             if (payment is null)
             {
-                return NotFound();
+                TempData["Error"] = "Không tìm thấy thanh toán này.";
+                return RedirectToAction(nameof(Index));
             }
 
-            TempData["Message"] = "Đã xóa phiếu thanh toán (demo).";
+            var success = ApiDataProvider.DeleteThanhToan(id);
+            if (!success)
+            {
+                TempData["Error"] = "Không thể xóa thanh toán. Vui lòng thử lại.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["Message"] = "Đã xóa thanh toán thành công.";
             return RedirectToAction(nameof(Index));
         }
     }

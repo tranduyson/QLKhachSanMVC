@@ -195,5 +195,14 @@ namespace HotelManagement.Models
 
         public static ThanhToan? GetThanhToan(int id)
             => GetFromApi<ThanhToan>($"api/ThanhToan/{id}");
+
+        public static ThanhToan? CreateThanhToan(ThanhToan tt)
+            => PostToApiAsync<ThanhToan>("api/ThanhToan", tt).GetAwaiter().GetResult();
+
+        public static bool UpdateThanhToan(ThanhToan tt)
+            => PutToApiAsync($"api/ThanhToan/{tt.maThanhToan}", tt).GetAwaiter().GetResult();
+
+        public static bool DeleteThanhToan(int id)
+            => DeleteFromApiAsync($"api/ThanhToan/{id}").GetAwaiter().GetResult();
     }
 }
