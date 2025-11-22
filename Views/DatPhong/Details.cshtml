@@ -73,8 +73,8 @@
             @foreach (var item in Model.chiTietDatPhongs ?? Enumerable.Empty<HotelManagement.Models.ChiTietDatPhong>())
             {
                 <tr>
-                    <td>@item.Phong?.SoPhong</td>
-                    <td>@item.Phong?.LoaiPhong?.TenLoaiPhong</td>
+                    <td>@item.SoPhong</td>
+                    <td>@item.TenLoaiPhong</td>
                     <td>@item.DonGia.ToString("N0") đ</td>
                     <td>@item.SoDem</td>
                     <td class="fw-semibold text-end">@item.ThanhTien.ToString("N0") đ</td>
@@ -105,7 +105,7 @@
             @foreach (var item in Model.suDungDichVus ?? Enumerable.Empty<HotelManagement.Models.SuDungDichVu>())
             {
                 <tr>
-                    <td>@item.DichVu?.TenDichVu</td>
+                    <td>@item.TenDichVu</td>
                     <td>@item.SoLuong</td>
                     <td>@item.DonGia.ToString("N0") đ</td>
                     <td class="fw-semibold text-end">@item.ThanhTien.ToString("N0") đ</td>

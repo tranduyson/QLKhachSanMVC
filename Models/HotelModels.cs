@@ -96,6 +96,11 @@ namespace HotelManagement.Models
         public decimal DonGia { get; set; }
         public int SoDem { get; set; }
         public decimal ThanhTien => DonGia * SoDem;
+        public string SoPhong { get; set; } 
+
+        public int MaLoaiPhong { get; set; } 
+
+        public string TenLoaiPhong { get; set; } 
     }
 
     public class SuDungDichVu
@@ -108,6 +113,7 @@ namespace HotelManagement.Models
         public int SoLuong { get; set; }
         public decimal DonGia { get; set; }
         public decimal ThanhTien => DonGia * SoLuong;
+        public string TenDichVu { get; set; }
     }
 
     public class ThanhToan
