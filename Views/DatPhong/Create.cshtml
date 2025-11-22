@@ -2,24 +2,49 @@
 @model HotelManagement.Models.DatPhong
 @{
     ViewData["Title"] = "Đặt phòng mới";
+
+    // ✅ Khởi tạo an toàn ngay đầu
     Model.chiTietDatPhongs ??= new List<HotelManagement.Models.ChiTietDatPhong>();
     Model.suDungDichVus ??= new List<HotelManagement.Models.SuDungDichVu>();
-    var phongOptions = ((IEnumerable<HotelManagement.Models.Phong>)ViewBag.PhongOptions).ToList();
-    var dichVuOptions = ((IEnumerable<HotelManagement.Models.DichVu>)ViewBag.DichVuOptions).ToList();
+
+    // Đảm bảo có ít nhất 1 phần tử
+    if (Model.chiTietDatPhongs.Count == 0)
+    {
+        Model.chiTietDatPhongs.Add(new HotelManagement.Models.ChiTietDatPhong());
+    }
+    if (Model.suDungDichVus.Count == 0)
+    {
+        Model.suDungDichVus.Add(new HotelManagement.Models.SuDungDichVu());
+    }
+
+    // Đảm bảo không có phần tử null
+    for (int i = 0; i < Model.chiTietDatPhongs.Count; i++)
+    {
+        Model.chiTietDatPhongs[i] ??= new HotelManagement.Models.ChiTietDatPhong();
+    }
+    for (int i = 0; i < Model.suDungDichVus.Count; i++)
+    {
+        Model.suDungDichVus[i] ??= new HotelManagement.Models.SuDungDichVu();
+    }
+
+    var phongOptions = ((IEnumerable<HotelManagement.Models.Phong>)ViewBag.PhongOptions)?.ToList() ?? new List<HotelManagement.Models.Phong>();
+    var dichVuOptions = ((IEnumerable<HotelManagement.Models.DichVu>)ViewBag.DichVuOptions)?.ToList() ?? new List<HotelManagement.Models.DichVu>();
+
     Func<int?, IEnumerable<SelectListItem>> phongItems = selectedId => phongOptions
         .Select(p => new SelectListItem
-        {
-            Value = p.Id.ToString(),
-            Text = $"{p.SoPhong} - {p.LoaiPhong?.TenLoaiPhong} ({p.LoaiPhong?.GiaMoiDem.ToString("N0")} đ/đêm)",
-            Selected = p.Id == selectedId
-        });
+                {
+                    Value = p.Id.ToString(),
+                    Text = $"{p.SoPhong} - {p.LoaiPhong?.TenLoaiPhong} ({p.LoaiPhong?.GiaMoiDem.ToString("N0")} đ/đêm)",
+                    Selected = p.Id == selectedId
+                });
+
     Func<int?, IEnumerable<SelectListItem>> dichVuItems = selectedId => dichVuOptions
         .Select(d => new SelectListItem
-        {
+                {
                     Value = d.maDichVu.ToString(),
                     Text = $"{d.TenDichVu} ({d.donGia.ToString("N0")} đ)",
                     Selected = d.maDichVu == selectedId
-        });
+                });
 }
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
@@ -74,22 +99,39 @@
                 </tr>
             </thead>
             <tbody>
-                @for (var i = 0; i < (Model.chiTietDatPhongs?.Count ?? 0); i++)
+                @for (var i = 0; i < Model.chiTietDatPhongs.Count; i++)
                 {
+                    var item = Model.chiTietDatPhongs[i];
+
                     <tr>
                         <td>
-                            <select asp-for="chiTietDatPhongs[i].PhongId" class="form-select" asp-items="phongItems(Model.chiTietDatPhongs[i].PhongId)"></select>
+                            <select asp-for="chiTietDatPhongs[i].PhongId"
+                                    class="form-select"
+                                    asp-items="phongItems(item.PhongId)">
+                            </select>
                             <span asp-validation-for="chiTietDatPhongs[i].PhongId" class="text-danger"></span>
                         </td>
+
                         <td>
-                            <input asp-for="chiTietDatPhongs[i].DonGia" class="form-control" type="number" step="1000" min="0" />
+                            <input asp-for="chiTietDatPhongs[i].DonGia"
+                                   class="form-control"
+                                   type="number"
+                                   step="1000"
+                                   min="0" />
                             <span asp-validation-for="chiTietDatPhongs[i].DonGia" class="text-danger"></span>
                         </td>
+
                         <td>
-                            <input asp-for="chiTietDatPhongs[i].SoDem" class="form-control" type="number" min="1" />
+                            <input asp-for="chiTietDatPhongs[i].SoDem"
+                                   class="form-control"
+                                   type="number"
+                                   min="1" />
                             <span asp-validation-for="chiTietDatPhongs[i].SoDem" class="text-danger"></span>
                         </td>
-                        <td class="text-end fw-semibold text-muted">@Model.chiTietDatPhongs[i].ThanhTien.ToString("N0") đ</td>
+
+                        <td class="text-end fw-semibold text-muted">
+                            @(item.ThanhTien.ToString("N0")) đ
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -108,22 +150,35 @@
                 </tr>
             </thead>
             <tbody>
-                @for (var i = 0; i < (Model.suDungDichVus?.Count ?? 0); i++)
+                @for (var i = 0; i < Model.suDungDichVus.Count; i++)
                 {
+                    var item = Model.suDungDichVus[i];
+
                     <tr>
                         <td>
-                            <select asp-for="suDungDichVus[i].DichVuId" class="form-select" asp-items="dichVuItems(Model.suDungDichVus[i].DichVuId)"></select>
+                            <select asp-for="suDungDichVus[i].DichVuId"
+                                    class="form-select"
+                                    asp-items="dichVuItems(item.DichVuId)"></select>
                             <span asp-validation-for="suDungDichVus[i].DichVuId" class="text-danger"></span>
                         </td>
                         <td>
-                            <input asp-for="suDungDichVus[i].SoLuong" class="form-control" type="number" min="1" />
+                            <input asp-for="suDungDichVus[i].SoLuong"
+                                   class="form-control"
+                                   type="number"
+                                   min="1" />
                             <span asp-validation-for="suDungDichVus[i].SoLuong" class="text-danger"></span>
                         </td>
                         <td>
-                            <input asp-for="suDungDichVus[i].DonGia" class="form-control" type="number" step="1000" min="0" />
+                            <input asp-for="suDungDichVus[i].DonGia"
+                                   class="form-control"
+                                   type="number"
+                                   step="1000"
+                                   min="0" />
                             <span asp-validation-for="suDungDichVus[i].DonGia" class="text-danger"></span>
                         </td>
-                        <td class="text-end fw-semibold text-muted">@Model.suDungDichVus[i].ThanhTien.ToString("N0") đ</td>
+                        <td class="text-end fw-semibold text-muted">
+                            @(item.ThanhTien.ToString("N0")) đ
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -133,13 +188,19 @@
     <div class="alert alert-info">
         <div class="d-flex justify-content-between">
             <span class="fw-semibold">Tổng tiền dịch vụ tạm tính</span>
-            <span>@Model.suDungDichVus?.Sum(s => s.ThanhTien).ToString("N0") đ</span>
+            <span>@(Model.suDungDichVus.Sum(s => s.ThanhTien).ToString("N0")) đ</span>
         </div>
         <div class="d-flex justify-content-between">
             <span class="fw-semibold">Tổng tiền phòng tạm tính</span>
-            <span>@Model.chiTietDatPhongs?.Sum(ct => ct.ThanhTien).ToString("N0") đ</span>
+            <span>@(Model.chiTietDatPhongs.Sum(ct => ct.ThanhTien).ToString("N0")) đ</span>
         </div>
     </div>
 
     <partial name="_FormActions" />
 </form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -28,17 +28,20 @@ namespace HotelManagement.Controllers
 
         public IActionResult Create()
         {
-            var model = new DatPhong
-            {
-                ngayDat = DateTime.Today,
-                ngayNhan = DateTime.Today,
-                ngayTra = DateTime.Today.AddDays(1),
-                trangThai = "DaDat",
-                chiTietDatPhongs = new List<ChiTietDatPhong> { new(), new() },
-                suDungDichVus = new List<SuDungDichVu> { new() }
-            };
+           var model = new DatPhong
+{
+    ngayDat = DateTime.Today,
+    ngayNhan = DateTime.Today,
+    ngayTra = DateTime.Today.AddDays(1),
+    trangThai = "DaDat",
+    chiTietDatPhongs = new List<ChiTietDatPhong> { new ChiTietDatPhong() },  // ✔
+    suDungDichVus = new List<SuDungDichVu> { new SuDungDichVu() },          // ✔
+};
+
 
             PopulateDropdowns(model);
+            ViewBag.PhongOptions = ApiDataProvider.GetPhongs();
+            ViewBag.DichVuOptions = ApiDataProvider.GetDichVus();
             return View(model);
         }
 
