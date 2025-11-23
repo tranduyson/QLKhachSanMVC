@@ -3,64 +3,70 @@
 @{
     ViewData["Title"] = "Đặt phòng mới";
 
-    // ✅ Khởi tạo an toàn ngay đầu
-    Model.chiTietDatPhongs ??= new List<HotelManagement.Models.ChiTietDatPhong>();
-    Model.suDungDichVus ??= new List<HotelManagement.Models.SuDungDichVu>();
+    // Model is initialized in controller, but ensure safe access
+    var chiTietDatPhongs = Model.chiTietDatPhongs ?? new List<HotelManagement.Models.ChiTietDatPhong>();
+    var suDungDichVus = Model.suDungDichVus ?? new List<HotelManagement.Models.SuDungDichVu>();
 
-    // Đảm bảo có ít nhất 1 phần tử
-    if (Model.chiTietDatPhongs.Count == 0)
-    {
-        Model.chiTietDatPhongs.Add(new HotelManagement.Models.ChiTietDatPhong());
-    }
-    if (Model.suDungDichVus.Count == 0)
-    {
-        Model.suDungDichVus.Add(new HotelManagement.Models.SuDungDichVu());
-    }
+    // ✅ ViewBag null-safe
+    var phongOptions = (ViewBag.PhongOptions.Items as IEnumerable<HotelManagement.Models.Phong>)
+        ?? Enumerable.Empty<HotelManagement.Models.Phong>();
+    var dichVuOptions = (ViewBag.DichVuOptions.Items as IEnumerable<HotelManagement.Models.DichVu>)
+        ?? Enumerable.Empty<HotelManagement.Models.DichVu>();
 
-    // Đảm bảo không có phần tử null
-    for (int i = 0; i < Model.chiTietDatPhongs.Count; i++)
-    {
-        Model.chiTietDatPhongs[i] ??= new HotelManagement.Models.ChiTietDatPhong();
-    }
-    for (int i = 0; i < Model.suDungDichVus.Count; i++)
-    {
-        Model.suDungDichVus[i] ??= new HotelManagement.Models.SuDungDichVu();
-    }
-
-    var phongOptions = ((IEnumerable<HotelManagement.Models.Phong>)ViewBag.PhongOptions)?.ToList() ?? new List<HotelManagement.Models.Phong>();
-    var dichVuOptions = ((IEnumerable<HotelManagement.Models.DichVu>)ViewBag.DichVuOptions)?.ToList() ?? new List<HotelManagement.Models.DichVu>();
-
-    Func<int?, IEnumerable<SelectListItem>> phongItems = selectedId => phongOptions
+    // Build select lists
+    var phongSelectList = phongOptions
         .Select(p => new SelectListItem
                 {
                     Value = p.Id.ToString(),
-                    Text = $"{p.SoPhong} - {p.LoaiPhong?.TenLoaiPhong} ({p.LoaiPhong?.GiaMoiDem.ToString("N0")} đ/đêm)",
-                    Selected = p.Id == selectedId
-                });
+                    Text = $"{p.SoPhong} - {p.LoaiPhong?.TenLoaiPhong ?? "N/A"} ({(p.LoaiPhong?.GiaMoiDem ?? 0).ToString("N0")} đ/đêm)"
+                })
+        .ToList();
 
-    Func<int?, IEnumerable<SelectListItem>> dichVuItems = selectedId => dichVuOptions
+    var dichVuSelectList = dichVuOptions
         .Select(d => new SelectListItem
                 {
                     Value = d.maDichVu.ToString(),
-                    Text = $"{d.TenDichVu} ({d.donGia.ToString("N0")} đ)",
-                    Selected = d.maDichVu == selectedId
-                });
+                    Text = $"{d.TenDichVu} ({d.donGia.ToString("N0")} đ)"
+                })
+        .ToList();
+
+    var khachHangOptions = (ViewBag.KhachHangList.Items as IEnumerable<HotelManagement.Models.KhachHang>)
+      ?? Enumerable.Empty<HotelManagement.Models.KhachHang>();
+
+    var khachHangList = khachHangOptions
+        .Select(kh => new SelectListItem
+                {
+                    Value = kh.maKhachHang.ToString(),
+                    Text = $"{kh.hoTen} - {kh.SoDienThoai ?? "N/A"}"
+                })
+        .ToList();
+
+    var nhanVienOptions = (ViewBag.NhanVienList.Items as IEnumerable<HotelManagement.Models.NhanVien>)
+        ?? Enumerable.Empty<HotelManagement.Models.NhanVien>();
+
+    var nhanVienList = nhanVienOptions
+        .Select(nv => new SelectListItem
+                {
+                    Value = nv.Id.ToString(),
+                    Text = $"{nv.HoTen} - {nv.ChucVu ?? "N/A"}"
+                })
+        .ToList();
 }
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
 
-<form asp-action="Create" method="post" class="needs-validation" novalidate>
+<form asp-action="Create" id="createForm" method="post" class="needs-validation" novalidate>
     <partial name="_ValidationSummary" />
 
     <div class="row g-3">
         <div class="col-md-6">
             <label asp-for="maKhachHang" class="form-label">Khách hàng</label>
-            <select asp-for="maKhachHang" asp-items="ViewBag.KhachHangList" class="form-select"></select>
+            <select asp-for="maKhachHang" asp-items="khachHangList" class="form-select"></select>
             <span asp-validation-for="maKhachHang" class="text-danger"></span>
         </div>
         <div class="col-md-6">
             <label asp-for="maNhanVien" class="form-label">Nhân viên phụ trách</label>
-            <select asp-for="maNhanVien" asp-items="ViewBag.NhanVienList" class="form-select"></select>
+            <select asp-for="maNhanVien" asp-items="nhanVienList" class="form-select"></select>
             <span asp-validation-for="maNhanVien" class="text-danger"></span>
         </div>
         <div class="col-md-4">
@@ -80,7 +86,13 @@
         </div>
         <div class="col-md-4">
             <label asp-for="trangThai" class="form-label">Trạng thái</label>
-            <select asp-for="trangThai" asp-items="ViewBag.TrangThaiList" class="form-select"></select>
+            <select asp-for="trangThai" class="form-select">
+                <option value="">-- Chọn trạng thái --</option>
+                <option value="DaDat">Đã đặt</option>
+                <option value="DaNhan">Đã nhận</option>
+                <option value="DaTra">Đã trả</option>
+                <option value="Huy">Hủy</option>
+            </select>
             <span asp-validation-for="trangThai" class="text-danger"></span>
         </div>
     </div>
@@ -88,111 +100,33 @@
     <hr class="my-4" />
 
     <h5 class="mb-3">Chi tiết phòng</h5>
-    <div class="table-responsive">
-        <table class="table align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>Phòng</th>
-                    <th>Đơn giá (đ)</th>
-                    <th>Số đêm</th>
-                    <th>Thành tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (var i = 0; i < Model.chiTietDatPhongs.Count; i++)
-                {
-                    var item = Model.chiTietDatPhongs[i];
-
-                    <tr>
-                        <td>
-                            <select asp-for="chiTietDatPhongs[i].PhongId"
-                                    class="form-select"
-                                    asp-items="phongItems(item.PhongId)">
-                            </select>
-                            <span asp-validation-for="chiTietDatPhongs[i].PhongId" class="text-danger"></span>
-                        </td>
-
-                        <td>
-                            <input asp-for="chiTietDatPhongs[i].DonGia"
-                                   class="form-control"
-                                   type="number"
-                                   step="1000"
-                                   min="0" />
-                            <span asp-validation-for="chiTietDatPhongs[i].DonGia" class="text-danger"></span>
-                        </td>
-
-                        <td>
-                            <input asp-for="chiTietDatPhongs[i].SoDem"
-                                   class="form-control"
-                                   type="number"
-                                   min="1" />
-                            <span asp-validation-for="chiTietDatPhongs[i].SoDem" class="text-danger"></span>
-                        </td>
-
-                        <td class="text-end fw-semibold text-muted">
-                            @(item.ThanhTien.ToString("N0")) đ
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <div id="phongContainer">
+        <!-- Dynamic rows will be added here by JavaScript -->
     </div>
+    <button type="button" id="addPhongBtn" class="btn btn-outline-primary btn-sm mb-3">
+        <i class="fas fa-plus"></i> Thêm phòng
+    </button>
 
     <h5 class="mb-3">Dịch vụ sử dụng</h5>
-    <div class="table-responsive">
-        <table class="table align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>Dịch vụ</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá (đ)</th>
-                    <th>Thành tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (var i = 0; i < Model.suDungDichVus.Count; i++)
-                {
-                    var item = Model.suDungDichVus[i];
-
-                    <tr>
-                        <td>
-                            <select asp-for="suDungDichVus[i].DichVuId"
-                                    class="form-select"
-                                    asp-items="dichVuItems(item.DichVuId)"></select>
-                            <span asp-validation-for="suDungDichVus[i].DichVuId" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <input asp-for="suDungDichVus[i].SoLuong"
-                                   class="form-control"
-                                   type="number"
-                                   min="1" />
-                            <span asp-validation-for="suDungDichVus[i].SoLuong" class="text-danger"></span>
-                        </td>
-                        <td>
-                            <input asp-for="suDungDichVus[i].DonGia"
-                                   class="form-control"
-                                   type="number"
-                                   step="1000"
-                                   min="0" />
-                            <span asp-validation-for="suDungDichVus[i].DonGia" class="text-danger"></span>
-                        </td>
-                        <td class="text-end fw-semibold text-muted">
-                            @(item.ThanhTien.ToString("N0")) đ
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <div id="dichVuContainer">
+        <!-- Dynamic rows will be added here by JavaScript -->
     </div>
+    <button type="button" id="addDichVuBtn" class="btn btn-outline-primary btn-sm mb-3">
+        <i class="fas fa-plus"></i> Thêm dịch vụ
+    </button>
 
     <div class="alert alert-info">
         <div class="d-flex justify-content-between">
             <span class="fw-semibold">Tổng tiền dịch vụ tạm tính</span>
-            <span>@(Model.suDungDichVus.Sum(s => s.ThanhTien).ToString("N0")) đ</span>
+            <span id="tongTienDichVu">@(suDungDichVus.Sum(s => s.ThanhTien).ToString("N0")) đ</span>
         </div>
         <div class="d-flex justify-content-between">
             <span class="fw-semibold">Tổng tiền phòng tạm tính</span>
-            <span>@(Model.chiTietDatPhongs.Sum(ct => ct.ThanhTien).ToString("N0")) đ</span>
+            <span id="tongTienPhong">@(chiTietDatPhongs.Sum(ct => ct.ThanhTien).ToString("N0")) đ</span>
+        </div>
+        <div class="d-flex justify-content-between">
+            <span class="fw-semibold">Tổng cộng</span>
+            <span id="tongCong">@((chiTietDatPhongs.Sum(ct => ct.ThanhTien) + suDungDichVus.Sum(s => s.ThanhTien)).ToString("N0")) đ</span>
         </div>
     </div>
 
@@ -203,4 +137,17 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        // Pass ViewBag data to JavaScript
+        window.DatPhongData = {
+            phongOptions: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(phongOptions)),
+            dichVuOptions: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(dichVuOptions))
+        };
+    </script>
+    <script src="~/js/datPhong.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            DatPhongApp.initCreateForm();
+        });
+    </script>
 }

@@ -13,10 +13,10 @@ window.DatPhongApp = {
 
     // Initialize create form
     initCreateForm() {
-        this.loadSelectOptions();
-        this.setupCreateForm();
         this.setupDynamicRows();
-        this.setupCalculation();
+        this.setupCreateForm();
+        // Tính tổng ban đầu
+        this.calculateTotal();
     },
 
     // Initialize details page
@@ -33,10 +33,10 @@ window.DatPhongApp = {
             document.getElementById('errorMessage').style.display = 'none';
 
             const data = await HotelApp.apiFetch('/DatPhong');
-            
+
             document.getElementById('loadingSpinner').style.display = 'none';
             document.getElementById('dataContainer').style.display = 'block';
-            
+
             this.renderDatPhongTable(data);
         } catch (error) {
             console.error('Error loading dat phong list:', error);
@@ -68,7 +68,7 @@ window.DatPhongApp = {
             const row = document.createElement('tr');
             const statusBadge = this.getStatusBadge(item.trangThai);
             const actionButtons = this.getActionButtons(item.maDatPhong, item.trangThai);
-            
+
             row.innerHTML = `
                 <td>${item.maDatPhong || ''}</td>
                 <td>${item.khachHang?.hoTen || ''}</td>
@@ -105,19 +105,19 @@ window.DatPhongApp = {
     // Get action buttons
     getActionButtons(id, status) {
         let buttons = '';
-        
+
         if (status === 'DaDat') {
             buttons += `<button type="button" class="btn btn-outline-success" onclick="DatPhongApp.checkin(${id})" title="Check-in">
                 <i class="fas fa-sign-in-alt"></i>
             </button>`;
         }
-        
+
         if (status === 'DaNhan') {
             buttons += `<button type="button" class="btn btn-outline-warning" onclick="DatPhongApp.checkout(${id})" title="Check-out">
                 <i class="fas fa-sign-out-alt"></i>
             </button>`;
         }
-        
+
         return buttons;
     },
 
@@ -134,283 +134,276 @@ window.DatPhongApp = {
         }
     },
 
-    // Load select options for create form
-    async loadSelectOptions() {
-        try {
-            // Load khach hang
-            const khachHangData = await HotelApp.apiFetch('/KhachHang');
-            const khachHangSelect = document.getElementById('khachHangId');
-            khachHangData.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.maDatPhong;
-                option.textContent = item.hoTen || item.tenKhachHang || '';
-                khachHangSelect.appendChild(option);
-            });
-
-            // Load nhan vien
-            const nhanVienData = await HotelApp.apiFetch('/NhanVien');
-            const nhanVienSelect = document.getElementById('nhanVienId');
-            nhanVienData.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.maDatPhong;
-                option.textContent = item.hoTen || item.tenNhanVien || '';
-                nhanVienSelect.appendChild(option);
-            });
-
-            // Load phong (trống)
-            const phongData = await HotelApp.apiFetch('/Phong');
-            const phongSelects = document.querySelectorAll('.phong-select');
-            phongSelects.forEach(select => {
-                phongData.filter(p => p.tinhTrang === 'Trong').forEach(item => {
-                    const option = document.createElement('option');
-                    option.value = item.maDatPhong;
-                    option.textContent = `${item.SoPhong} - ${item.loaiPhong?.tenLoaiPhong || ''}`;
-                    option.dataset.gia = item.loaiPhong?.giaCoBan || 0;
-                    select.appendChild(option);
-                });
-            });
-
-            // Load dich vu
-            const dichVuData = await HotelApp.apiFetch('/DichVu');
-            const dichVuSelects = document.querySelectorAll('.dichvu-select');
-            dichVuSelects.forEach(select => {
-                dichVuData.forEach(item => {
-                    const option = document.createElement('option');
-                    option.value = item.maDatPhong;
-                    option.textContent = item.tenDichVu;
-                    option.dataset.gia = item.gia || 0;
-                    select.appendChild(option);
-                });
-            });
-
-        } catch (error) {
-            console.error('Error loading select options:', error);
-            HotelApp.showError('Không thể tải dữ liệu cho form: ' + error.message);
-        }
-    },
-
     // Setup create form
     setupCreateForm() {
         const form = document.getElementById('createForm');
-        const submitBtn = document.getElementById('submitBtn');
+        if (!form) return;
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            if (!HotelApp.validateForm('createForm')) {
+
+            if (!form.checkValidity()) {
+                e.stopPropagation();
+                form.classList.add('was-validated');
                 return;
             }
 
             try {
-                HotelApp.showLoading(submitBtn);
-                
+                const submitBtn = form.querySelector('[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Đang xử lý...';
+                }
+
                 const formData = new FormData(form);
-                const data = this.collectFormData(formData);
-                
-                await HotelApp.apiFetch('/DatPhong', {
-                    method: 'POST',
-                    body: JSON.stringify(data)
+
+                // Collect data from form
+                const data = {
+                    maKhachHang: parseInt(formData.get('maKhachHang')),
+                    maNhanVien: parseInt(formData.get('maNhanVien')),
+                    ngayDat: formData.get('ngayDat'),
+                    ngayNhan: formData.get('ngayNhan'),
+                    ngayTra: formData.get('ngayTra'),
+                    trangThai: formData.get('trangThai'),
+                    chiTietDatPhongs: [],
+                    suDungDichVus: []
+                };
+
+                // Collect phong data from table rows
+                const phongRows = document.querySelectorAll('#phongContainer .phong-row');
+                phongRows.forEach((row) => {
+                    const phongId = row.querySelector('.phong-select')?.value;
+                    const donGia = parseFloat(row.querySelector('.don-gia-phong')?.value || 0);
+                    const soDem = parseInt(row.querySelector('.so-dem')?.value || 0);
+
+                    if (phongId && donGia > 0 && soDem > 0) {
+                        data.chiTietDatPhongs.push({
+                            PhongId: parseInt(phongId),
+                            DonGia: donGia,
+                            SoDem: soDem
+                        });
+                    }
                 });
 
-                HotelApp.showSuccess('Đặt phòng thành công!');
+                // Collect dich vu data from table rows
+                const dichVuRows = document.querySelectorAll('#dichVuContainer .dichvu-row');
+                dichVuRows.forEach((row) => {
+                    const dichVuId = row.querySelector('.dichvu-select')?.value;
+                    const soLuong = parseInt(row.querySelector('.so-luong')?.value || 0);
+                    const donGia = parseFloat(row.querySelector('.don-gia-dichvu')?.value || 0);
+
+                    if (dichVuId && soLuong > 0 && donGia > 0) {
+                        data.suDungDichVus.push({
+                            DichVuId: parseInt(dichVuId),
+                            SoLuong: soLuong,
+                            DonGia: donGia
+                        });
+                    }
+                });
+
+                console.log('Submitting data:', data);
+
+                // Submit form (for now just redirect - actual API call would go here)
+                alert('Đặt phòng thành công! (Demo)');
                 window.location.href = '/DatPhong';
+
             } catch (error) {
                 console.error('Error creating dat phong:', error);
-                HotelApp.showError('Không thể đặt phòng: ' + error.message);
-            } finally {
-                HotelApp.hideLoading(submitBtn, 'Đặt phòng');
+                alert('Không thể đặt phòng: ' + error.message);
             }
         });
-    },
-
-    // Collect form data
-    collectFormData(formData) {
-        const data = {
-            khachHangId: parseInt(formData.get('khachHangId')),
-            nhanVienId: parseInt(formData.get('nhanVienId')),
-            ngayNhan: formData.get('ngayNhan'),
-            ngayTra: formData.get('ngayTra'),
-            chiTietDatPhongs: [],
-            suDungDichVus: []
-        };
-
-        // Collect phong data
-        const phongRows = document.querySelectorAll('#phongContainer .dynamic-row');
-        phongRows.forEach((row, index) => {
-            const phongId = row.querySelector('.phong-select').value;
-            const donGia = parseFloat(row.querySelector('.don-gia').value);
-            const soDem = parseInt(row.querySelector('.so-dem').value);
-            
-            if (phongId && donGia && soDem) {
-                data.chiTietDatPhongs.push({
-                    phongId: parseInt(phongId),
-                    donGia: donGia,
-                    soDem: soDem
-                });
-            }
-        });
-
-        // Collect dich vu data
-        const dichVuRows = document.querySelectorAll('#dichVuContainer .dynamic-row');
-        dichVuRows.forEach((row, index) => {
-            const dichVuId = row.querySelector('.dichvu-select').value;
-            const soLuong = parseInt(row.querySelector('.so-luong').value);
-            const donGia = parseFloat(row.querySelector('.don-gia-dichvu').value);
-            
-            if (dichVuId && soLuong && donGia) {
-                data.suDungDichVus.push({
-                    dichVuId: parseInt(dichVuId),
-                    soLuong: soLuong,
-                    donGia: donGia
-                });
-            }
-        });
-
-        return data;
     },
 
     // Setup dynamic rows
     setupDynamicRows() {
-        // Add phong row
-        document.getElementById('addPhongBtn').addEventListener('click', () => {
-            this.addPhongRow();
+        const addPhongBtn = document.getElementById('addPhongBtn');
+        const addDichVuBtn = document.getElementById('addDichVuBtn');
+
+        if (addPhongBtn) {
+            addPhongBtn.addEventListener('click', () => {
+                this.addPhongRow();
+            });
+        }
+
+        if (addDichVuBtn) {
+            addDichVuBtn.addEventListener('click', () => {
+                this.addDichVuRow();
+            });
+        }
+
+        // Setup existing rows
+        this.setupExistingRows();
+    },
+
+    // Setup existing rows
+    setupExistingRows() {
+        document.querySelectorAll('.phong-row').forEach(row => {
+            this.setupPhongRowEvents(row);
         });
 
-        // Add dich vu row
-        document.getElementById('addDichVuBtn').addEventListener('click', () => {
-            this.addDichVuRow();
+        document.querySelectorAll('.dichvu-row').forEach(row => {
+            this.setupDichVuRowEvents(row);
         });
     },
 
     // Add phong row
     addPhongRow() {
-        this.phongIndex++;
         const container = document.getElementById('phongContainer');
-        const newRow = document.createElement('div');
-        newRow.className = 'dynamic-row';
-        newRow.dataset.index = this.phongIndex;
-        
+        if (!container) return;
+
+        const index = container.querySelectorAll('.phong-row').length;
+
+        const newRow = document.createElement('tr');
+        newRow.className = 'phong-row';
+
         newRow.innerHTML = `
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label">Phòng <span class="text-danger">*</span></label>
-                        <select class="form-select phong-select" name="chiTietDatPhongs[${this.phongIndex}].phongId" required>
-                            <option value="">Chọn phòng...</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label class="form-label">Đơn giá (VNĐ) <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control don-gia" name="chiTietDatPhongs[${this.phongIndex}].donGia" min="0" step="1000" required>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label class="form-label">Số đêm <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control so-dem" name="chiTietDatPhongs[${this.phongIndex}].soDem" min="1" required>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="mb-3">
-                        <label class="form-label">&nbsp;</label>
-                        <button type="button" class="btn btn-danger btn-sm w-100 remove-phong">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <td>
+                <select name="chiTietDatPhongs[${index}].PhongId" class="form-select phong-select" required>
+                    <option value="">-- Chọn phòng --</option>
+                </select>
+            </td>
+            <td>
+                <input type="number" name="chiTietDatPhongs[${index}].DonGia" class="form-control don-gia-phong" readonly />
+            </td>
+            <td>
+                <input type="number" name="chiTietDatPhongs[${index}].SoDem" class="form-control so-dem" min="1" value="1" required />
+            </td>
+            <td>
+                <input type="number" name="chiTietDatPhongs[${index}].ThanhTien" class="form-control thanh-tien-phong" readonly />
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm btn-danger remove-phong-btn">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
         `;
-        
+
         container.appendChild(newRow);
-        this.loadPhongOptions(newRow.querySelector('.phong-select'));
-        this.setupRemoveButton(newRow, '.remove-phong');
-        this.setupCalculation();
+
+        // Load phong options
+        this.loadPhongOptionsForRow(newRow);
+
+        // Setup events
+        this.setupPhongRowEvents(newRow);
     },
 
     // Add dich vu row
     addDichVuRow() {
-        this.dichVuIndex++;
         const container = document.getElementById('dichVuContainer');
-        const newRow = document.createElement('div');
-        newRow.className = 'dynamic-row';
-        newRow.dataset.index = this.dichVuIndex;
-        
+        if (!container) return;
+
+        const index = container.querySelectorAll('.dichvu-row').length;
+
+        const newRow = document.createElement('tr');
+        newRow.className = 'dichvu-row';
+
         newRow.innerHTML = `
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="mb-3">
-                        <label class="form-label">Dịch vụ</label>
-                        <select class="form-select dichvu-select" name="suDungDichVus[${this.dichVuIndex}].dichVuId">
-                            <option value="">Chọn dịch vụ...</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label class="form-label">Số lượng</label>
-                        <input type="number" class="form-control so-luong" name="suDungDichVus[${this.dichVuIndex}].soLuong" min="1" value="1">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label class="form-label">Đơn giá (VNĐ)</label>
-                        <input type="number" class="form-control don-gia-dichvu" name="suDungDichVus[${this.dichVuIndex}].donGia" min="0" step="1000">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="mb-3">
-                        <label class="form-label">&nbsp;</label>
-                        <button type="button" class="btn btn-danger btn-sm w-100 remove-dichvu">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <td>
+                <select name="suDungDichVus[${index}].DichVuId" class="form-select dichvu-select" required>
+                    <option value="">-- Chọn dịch vụ --</option>
+                </select>
+            </td>
+            <td>
+                <input type="number" name="suDungDichVus[${index}].SoLuong" class="form-control so-luong" min="1" value="1" required />
+            </td>
+            <td>
+                <input type="number" name="suDungDichVus[${index}].DonGia" class="form-control don-gia-dichvu" readonly />
+            </td>
+            <td>
+                <input type="number" name="suDungDichVus[${index}].ThanhTien" class="form-control thanh-tien-dichvu" readonly />
+            </td>
+            <td>
+                <button type="button" class="btn btn-sm btn-danger remove-dichvu-btn">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
         `;
-        
+
         container.appendChild(newRow);
-        this.loadDichVuOptions(newRow.querySelector('.dichvu-select'));
-        this.setupRemoveButton(newRow, '.remove-dichvu');
-        this.setupCalculation();
+
+        // Load dich vu options
+        this.loadDichVuOptionsForRow(newRow);
+
+        // Setup events
+        this.setupDichVuRowEvents(newRow);
     },
 
-    // Load phong options
-    async loadPhongOptions(select) {
+    // Load phong options for a row
+    loadPhongOptionsForRow(row) {
+        const select = row.querySelector('.phong-select');
+        if (!select) return;
+
         try {
-            const phongData = await HotelApp.apiFetch('/Phong');
-            phongData.filter(p => p.tinhTrang === 'Trong').forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.maDatPhong;
-                option.textContent = `${item.soPhong} - ${item.loaiPhong?.tenLoaiPhong || ''}`;
-                option.dataset.gia = item.loaiPhong?.giaCoBan || 0;
-                select.appendChild(option);
-            });
+            if (window.DatPhongData && window.DatPhongData.phongOptions) {
+                window.DatPhongData.phongOptions.filter(p => p.tinhTrang === 'Trong').forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.Id;
+                    option.textContent = `${item.SoPhong} - ${item.loaiPhong?.tenLoaiPhong || 'N/A'} (${(item.loaiPhong?.giaMoiDem || 0).toLocaleString('vi-VN')} đ/đêm)`;
+                    option.dataset.gia = item.loaiPhong?.giaMoiDem || 0;
+                    select.appendChild(option);
+                });
+            }
         } catch (error) {
             console.error('Error loading phong options:', error);
         }
     },
 
-    // Load dich vu options
-    async loadDichVuOptions(select) {
+    // Load dich vu options for a row
+    loadDichVuOptionsForRow(row) {
+        const select = row.querySelector('.dichvu-select');
+        if (!select) return;
+
         try {
-            const dichVuData = await HotelApp.apiFetch('/DichVu');
-            dichVuData.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.maDatPhong;
-                option.textContent = item.tenDichVu;
-                option.dataset.gia = item.gia || 0;
-                select.appendChild(option);
-            });
+            if (window.DatPhongData && window.DatPhongData.dichVuOptions) {
+                window.DatPhongData.dichVuOptions.forEach(item => {
+
+                    const option = document.createElement('option');
+                    option.value = item.maDichVu;
+                    option.textContent = `${item.TenDichVu} (${(item.donGia || 0).toLocaleString('vi-VN')} đ)`;
+                    option.dataset.gia = item.donGia || 0;
+                    select.appendChild(option);
+                });
+            }
         } catch (error) {
             console.error('Error loading dich vu options:', error);
         }
     },
 
-    // Setup remove button
-    setupRemoveButton(row, selector) {
-        const removeBtn = row.querySelector(selector);
+    // Setup phong row events
+    setupPhongRowEvents(row) {
+        // Phong select change
+        const phongSelect = row.querySelector('.phong-select');
+        if (phongSelect) {
+            phongSelect.addEventListener('change', (e) => {
+                const selectedOption = e.target.selectedOptions[0];
+                if (selectedOption && selectedOption.dataset.gia) {
+                    const donGiaInput = row.querySelector('.don-gia-phong');
+                    const soDemInput = row.querySelector('.so-dem');
+                    const thanhTienInput = row.querySelector('.thanh-tien-phong');
+
+                    donGiaInput.value = selectedOption.dataset.gia;
+                    const thanhTien = parseFloat(donGiaInput.value) * parseInt(soDemInput.value || 0);
+                    thanhTienInput.value = thanhTien;
+
+                    this.calculateTotal();
+                }
+            });
+        }
+
+        // So dem change
+        const soDemInput = row.querySelector('.so-dem');
+        if (soDemInput) {
+            soDemInput.addEventListener('input', () => {
+                const donGia = parseFloat(row.querySelector('.don-gia-phong')?.value || 0);
+                const soDem = parseInt(soDemInput.value || 0);
+                const thanhTienInput = row.querySelector('.thanh-tien-phong');
+                thanhTienInput.value = donGia * soDem;
+                this.calculateTotal();
+            });
+        }
+
+        // Remove button
+        const removeBtn = row.querySelector('.remove-phong-btn');
         if (removeBtn) {
             removeBtn.addEventListener('click', () => {
                 row.remove();
@@ -419,35 +412,47 @@ window.DatPhongApp = {
         }
     },
 
-    // Setup calculation
-    setupCalculation() {
-        // Phong calculation
-        document.addEventListener('change', (e) => {
-            if (e.target.classList.contains('phong-select')) {
-                const option = e.target.selectedOptions[0];
-                if (option && option.dataset.gia) {
-                    const donGiaInput = e.target.closest('.dynamic-row').querySelector('.don-gia');
-                    donGiaInput.value = option.dataset.gia;
+    // Setup dich vu row events
+    setupDichVuRowEvents(row) {
+        // Dich vu select change
+        const dichVuSelect = row.querySelector('.dichvu-select');
+        if (dichVuSelect) {
+            dichVuSelect.addEventListener('change', (e) => {
+                const selectedOption = e.target.selectedOptions[0];
+                if (selectedOption && selectedOption.dataset.gia) {
+                    const donGiaInput = row.querySelector('.don-gia-dichvu');
+                    const soLuongInput = row.querySelector('.so-luong');
+                    const thanhTienInput = row.querySelector('.thanh-tien-dichvu');
+
+                    donGiaInput.value = selectedOption.dataset.gia;
+                    const thanhTien = parseFloat(donGiaInput.value) * parseInt(soLuongInput.value || 0);
+                    thanhTienInput.value = thanhTien;
+
                     this.calculateTotal();
                 }
-            }
-            
-            if (e.target.classList.contains('dichvu-select')) {
-                const option = e.target.selectedOptions[0];
-                if (option && option.dataset.gia) {
-                    const donGiaInput = e.target.closest('.dynamic-row').querySelector('.don-gia-dichvu');
-                    donGiaInput.value = option.dataset.gia;
-                    this.calculateTotal();
-                }
-            }
-            
-            if (e.target.classList.contains('don-gia') || 
-                e.target.classList.contains('so-dem') || 
-                e.target.classList.contains('so-luong') || 
-                e.target.classList.contains('don-gia-dichvu')) {
+            });
+        }
+
+        // So luong change
+        const soLuongInput = row.querySelector('.so-luong');
+        if (soLuongInput) {
+            soLuongInput.addEventListener('input', () => {
+                const donGia = parseFloat(row.querySelector('.don-gia-dichvu')?.value || 0);
+                const soLuong = parseInt(soLuongInput.value || 0);
+                const thanhTienInput = row.querySelector('.thanh-tien-dichvu');
+                thanhTienInput.value = donGia * soLuong;
                 this.calculateTotal();
-            }
-        });
+            });
+        }
+
+        // Remove button
+        const removeBtn = row.querySelector('.remove-dichvu-btn');
+        if (removeBtn) {
+            removeBtn.addEventListener('click', () => {
+                row.remove();
+                this.calculateTotal();
+            });
+        }
     },
 
     // Calculate total
@@ -456,25 +461,31 @@ window.DatPhongApp = {
         let tongTienDichVu = 0;
 
         // Calculate phong total
-        const phongRows = document.querySelectorAll('#phongContainer .dynamic-row');
-        phongRows.forEach(row => {
-            const donGia = parseFloat(row.querySelector('.don-gia').value) || 0;
-            const soDem = parseInt(row.querySelector('.so-dem').value) || 0;
-            tongTienPhong += donGia * soDem;
+        document.querySelectorAll('.phong-row').forEach(row => {
+            const thanhTien = parseFloat(row.querySelector('.thanh-tien-phong')?.value || 0);
+            tongTienPhong += thanhTien;
         });
 
         // Calculate dich vu total
-        const dichVuRows = document.querySelectorAll('#dichVuContainer .dynamic-row');
-        dichVuRows.forEach(row => {
-            const donGia = parseFloat(row.querySelector('.don-gia-dichvu').value) || 0;
-            const soLuong = parseInt(row.querySelector('.so-luong').value) || 0;
-            tongTienDichVu += donGia * soLuong;
+        document.querySelectorAll('.dichvu-row').forEach(row => {
+            const thanhTien = parseFloat(row.querySelector('.thanh-tien-dichvu')?.value || 0);
+            tongTienDichVu += thanhTien;
         });
 
         // Update display
-        document.getElementById('tongTienPhong').textContent = HotelApp.formatCurrency(tongTienPhong);
-        document.getElementById('tongTienDichVu').textContent = HotelApp.formatCurrency(tongTienDichVu);
-        document.getElementById('tongCong').textContent = HotelApp.formatCurrency(tongTienPhong + tongTienDichVu);
+        const tongTienPhongEl = document.getElementById('tongTienPhong');
+        const tongTienDichVuEl = document.getElementById('tongTienDichVu');
+        const tongCongEl = document.getElementById('tongCong');
+
+        if (tongTienPhongEl) {
+            tongTienPhongEl.textContent = tongTienPhong.toLocaleString('vi-VN') + ' đ';
+        }
+        if (tongTienDichVuEl) {
+            tongTienDichVuEl.textContent = tongTienDichVu.toLocaleString('vi-VN') + ' đ';
+        }
+        if (tongCongEl) {
+            tongCongEl.textContent = (tongTienPhong + tongTienDichVu).toLocaleString('vi-VN') + ' đ';
+        }
     },
 
     // Load dat phong details
@@ -485,10 +496,10 @@ window.DatPhongApp = {
             document.getElementById('detailsContent').style.display = 'none';
 
             const data = await HotelApp.apiFetch(`/DatPhong/${id}`);
-            
+
             document.getElementById('loadingSpinner').style.display = 'none';
             document.getElementById('detailsContent').style.display = 'block';
-            
+
             this.renderDatPhongDetails(data);
         } catch (error) {
             console.error('Error loading dat phong details:', error);
@@ -512,7 +523,7 @@ window.DatPhongApp = {
 
         // Chi tiet phong
         this.renderChiTietPhong(data.chiTietDatPhongs || []);
-        
+
         // Dich vu
         this.renderDichVu(data.suDungDichVus || []);
 
@@ -569,9 +580,9 @@ window.DatPhongApp = {
 
     // Render total
     renderTotal(data) {
-        const tongTienPhong = (data.chiTietDatPhongs || []).reduce((sum, item) => 
+        const tongTienPhong = (data.chiTietDatPhongs || []).reduce((sum, item) =>
             sum + ((item.donGia || 0) * (item.soDem || 0)), 0);
-        const tongTienDichVu = (data.suDungDichVus || []).reduce((sum, item) => 
+        const tongTienDichVu = (data.suDungDichVus || []).reduce((sum, item) =>
             sum + ((item.donGia || 0) * (item.soLuong || 0)), 0);
 
         document.getElementById('tongTienPhong').textContent = HotelApp.formatCurrency(tongTienPhong);
@@ -639,7 +650,7 @@ window.DatPhongApp = {
         try {
             let endpoint = '';
             let method = 'PUT';
-            
+
             switch (this.currentAction) {
                 case 'checkin':
                     endpoint = `/DatPhong/${this.currentId}/checkin`;
@@ -654,19 +665,19 @@ window.DatPhongApp = {
             }
 
             await HotelApp.apiFetch(endpoint, { method });
-            
+
             const actionNames = {
                 'checkin': 'Check-in',
                 'checkout': 'Check-out',
                 'cancel': 'Hủy đặt phòng'
             };
-            
+
             HotelApp.showSuccess(`${actionNames[this.currentAction]} thành công!`);
-            
+
             // Close modal
             const modal = bootstrap.Modal.getInstance(document.getElementById('actionModal'));
             modal.hide();
-            
+
             // Reload page or redirect
             if (window.location.pathname.includes('/Details/')) {
                 this.loadDatPhongDetails(this.currentId);
@@ -681,10 +692,10 @@ window.DatPhongApp = {
 };
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Auto-initialize based on current page
     const path = window.location.pathname;
-    
+
     if (path.includes('/DatPhong/Index') || path === '/DatPhong' || path === '/DatPhong/') {
         DatPhongApp.initIndexPage();
     }
