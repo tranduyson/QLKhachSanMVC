@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZRdBF9tTySbydbKRxty+BAAw8fS4cyRVY2XNUdw0uvI=",
+  "Hash": "8GxwgD01ZwBRx+xNC+4s4kheM9B/SRvFnod2wx36VEI=",
   "Source": "HotelManagement",
   "BasePath": "_content/HotelManagement",
   "Mode": "Default",
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "jlc57hd4xy",
-      "Integrity": "B+oxzv5ql4YqLLy8R9sTWOHWbf7LDY2XxnzWHdrRaZ0=",
+      "Fingerprint": "i43p3pzks6",
+      "Integrity": "7gznxQSIEr6jfZlCP9Z+cGO1+AKTi3oVYqyRSgiJW8o=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\datPhong.js"
@@ -185,7 +185,7 @@
       ]
     },
     {
-      "Route": "js/datPhong.jlc57hd4xy.js",
+      "Route": "js/datPhong.i43p3pzks6.js",
       "AssetFile": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -195,7 +195,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "27333"
+          "Value": "27311"
         },
         {
           "Name": "Content-Type",
@@ -203,11 +203,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"B+oxzv5ql4YqLLy8R9sTWOHWbf7LDY2XxnzWHdrRaZ0=\""
+          "Value": "\"7gznxQSIEr6jfZlCP9Z+cGO1+AKTi3oVYqyRSgiJW8o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Nov 2025 15:51:39 GMT"
+          "Value": "Sun, 23 Nov 2025 16:39:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -217,7 +217,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "jlc57hd4xy"
+          "Value": "i43p3pzks6"
         },
         {
           "Name": "label",
@@ -225,7 +225,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-B+oxzv5ql4YqLLy8R9sTWOHWbf7LDY2XxnzWHdrRaZ0="
+          "Value": "sha256-7gznxQSIEr6jfZlCP9Z+cGO1+AKTi3oVYqyRSgiJW8o="
         }
       ]
     },
@@ -240,7 +240,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "27333"
+          "Value": "27311"
         },
         {
           "Name": "Content-Type",
@@ -248,11 +248,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"B+oxzv5ql4YqLLy8R9sTWOHWbf7LDY2XxnzWHdrRaZ0=\""
+          "Value": "\"7gznxQSIEr6jfZlCP9Z+cGO1+AKTi3oVYqyRSgiJW8o=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 23 Nov 2025 15:51:39 GMT"
+          "Value": "Sun, 23 Nov 2025 16:39:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -262,7 +262,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-B+oxzv5ql4YqLLy8R9sTWOHWbf7LDY2XxnzWHdrRaZ0="
+          "Value": "sha256-7gznxQSIEr6jfZlCP9Z+cGO1+AKTi3oVYqyRSgiJW8o="
         }
       ]
     },

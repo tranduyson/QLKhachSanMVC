@@ -30,8 +30,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jlc57hd4xy</Fingerprint>
-      <Integrity>B+oxzv5ql4YqLLy8R9sTWOHWbf7LDY2XxnzWHdrRaZ0=</Integrity>
+      <Fingerprint>i43p3pzks6</Fingerprint>
+      <Integrity>7gznxQSIEr6jfZlCP9Z+cGO1+AKTi3oVYqyRSgiJW8o=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\datPhong.js'))</OriginalItemSpec>

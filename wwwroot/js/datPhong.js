@@ -263,7 +263,7 @@ window.DatPhongApp = {
                 </select>
             </td>
             <td>
-                <input type="number" name="chiTietDatPhongs[${index}].DonGia" class="form-control don-gia-phong" readonly />
+                <input type="text" class="form-control loai-phong" readonly />
             </td>
             <td>
                 <input type="number" name="chiTietDatPhongs[${index}].SoDem" class="form-control so-dem" min="1" value="1" required />
@@ -272,8 +272,8 @@ window.DatPhongApp = {
                 <input type="number" name="chiTietDatPhongs[${index}].ThanhTien" class="form-control thanh-tien-phong" readonly />
             </td>
             <td>
-                <button type="button" class="btn btn-sm btn-danger remove-phong-btn">
-                    <i class="fas fa-trash"></i>
+                <button type="button" class="btn btn-outline-danger btn-sm remove-phong-btn rounded" title="Xóa dòng">
+                    Xóa
                 </button>
             </td>
         `;
@@ -313,8 +313,8 @@ window.DatPhongApp = {
                 <input type="number" name="suDungDichVus[${index}].ThanhTien" class="form-control thanh-tien-dichvu" readonly />
             </td>
             <td>
-                <button type="button" class="btn btn-sm btn-danger remove-dichvu-btn">
-                    <i class="fas fa-trash"></i>
+                <button type="button" class="btn btn-outline-danger btn-sm remove-dichvu-btn rounded" title="Xóa dòng">
+                    Xóa
                 </button>
             </td>
         `;
