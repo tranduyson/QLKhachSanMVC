@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -45,10 +49,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\controllers\\datphongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:controllers\\datphongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\dichvu\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -232,7 +232,7 @@
               "RelativeDocumentMoniker": "Views\\DatPhong\\Create.cshtml",
               "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml",
               "RelativeToolTip": "Views\\DatPhong\\Create.cshtml",
-              "ViewState": "AgIAAG0AAAAAAAAAAIAwwHsAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAGEAAAAAAAAAAIAwwG4AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-10T14:31:31.82Z",
               "IsPinned": true,
@@ -240,20 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DashboardViewModel.cs",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\DashboardViewModel.cs",
-              "RelativeDocumentMoniker": "Models\\DashboardViewModel.cs",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\DashboardViewModel.cs",
-              "RelativeToolTip": "Models\\DashboardViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T17:57:42.899Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ApiDataProvider.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\ApiDataProvider.cs",
               "RelativeDocumentMoniker": "Models\\ApiDataProvider.cs",
@@ -261,12 +248,11 @@
               "RelativeToolTip": "Models\\ApiDataProvider.cs",
               "ViewState": "AgIAAK8AAAAAAAAAAAASwL4AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T14:31:54.23Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:31:54.23Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HotelModels.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\HotelModels.cs",
               "RelativeDocumentMoniker": "Models\\HotelModels.cs",
@@ -274,12 +260,11 @@
               "RelativeToolTip": "Models\\HotelModels.cs",
               "ViewState": "AgIAAGcAAAAAAAAAAAAEwBUAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-21T14:55:15.819Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-21T14:55:15.819Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "datPhong.js",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\datPhong.js",
@@ -287,12 +272,11 @@
               "RelativeToolTip": "wwwroot\\js\\datPhong.js",
               "ViewState": "AgIAAHEBAAAAAAAAAAAAAHQBAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-10T14:30:14.51Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:30:14.51Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -300,12 +284,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAuwDsAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T15:51:19.484Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T15:51:19.484Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Details.cshtml",
@@ -313,12 +296,35 @@
               "RelativeToolTip": "Views\\DatPhong\\Details.cshtml",
               "ViewState": "AgIAAEQAAAAAAAAAAAAtwEwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T14:31:38.384Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:31:38.384Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\DatPhong\\Edit.cshtml",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Edit.cshtml",
+              "RelativeToolTip": "Views\\DatPhong\\Edit.cshtml",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAvwGQAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-23T15:08:58.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DashboardViewModel.cs",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\DashboardViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\DashboardViewModel.cs",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\DashboardViewModel.cs",
+              "RelativeToolTip": "Models\\DashboardViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T17:57:42.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -326,12 +332,11 @@
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAGYAAAAAAAAAAAAhwHQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-23T15:42:09.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T15:42:09.559Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -339,21 +344,7 @@
               "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-22T14:05:02.841Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Edit.cshtml",
-              "RelativeDocumentMoniker": "Views\\DatPhong\\Edit.cshtml",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Edit.cshtml",
-              "RelativeToolTip": "Views\\DatPhong\\Edit.cshtml",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAvwG0AAABaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-23T15:08:58.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-22T14:05:02.841Z"
             },
             {
               "$type": "Document",
@@ -365,12 +356,11 @@
               "RelativeToolTip": "Views\\DatPhong\\Index.cshtml",
               "ViewState": "AgIAABUAAAAAAAAAAAAAAB8AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T14:50:48.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:50:48.536Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "site.js",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
@@ -378,12 +368,11 @@
               "RelativeToolTip": "wwwroot\\js\\site.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-23T15:41:35.257Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T15:41:35.257Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "DatPhongController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\DatPhongController.cs",
               "RelativeDocumentMoniker": "Controllers\\DatPhongController.cs",
@@ -391,8 +380,7 @@
               "RelativeToolTip": "Controllers\\DatPhongController.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAjwGUAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T15:07:42.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-15T15:07:42.761Z"
             },
             {
               "$type": "Document",
@@ -404,8 +392,7 @@
               "RelativeToolTip": "Views\\LoaiPhong\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-23T14:14:01.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T14:14:01.742Z"
             },
             {
               "$type": "Document",
@@ -417,8 +404,7 @@
               "RelativeToolTip": "Views\\DichVu\\_Form.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAAAAABYAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T15:36:55.155Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T15:36:55.155Z"
             },
             {
               "$type": "Document",
@@ -430,8 +416,7 @@
               "RelativeToolTip": "Views\\DichVu\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T15:45:36.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T15:45:36.527Z"
             },
             {
               "$type": "Document",
@@ -443,8 +428,7 @@
               "RelativeToolTip": "Views\\LoaiPhong\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-13T16:45:08.305Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T16:45:08.305Z"
             },
             {
               "$type": "Document",
@@ -468,8 +452,7 @@
               "RelativeToolTip": "Views\\LoaiPhong\\_Form.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-16T14:54:59.322Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-16T14:54:59.322Z"
             },
             {
               "$type": "Document",
@@ -481,8 +464,7 @@
               "RelativeToolTip": "Views\\LoaiPhong\\Index.cshtml",
               "ViewState": "AgIAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-16T14:55:02.588Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-16T14:55:02.588Z"
             },
             {
               "$type": "Document",
@@ -613,8 +595,7 @@
               "RelativeToolTip": "Views\\Phong\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-13T16:02:53.537Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T16:02:53.537Z"
             },
             {
               "$type": "Document",
@@ -650,8 +631,7 @@
               "RelativeToolTip": "Views\\NhanVien\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-16T14:53:53.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-16T14:53:53.049Z"
             },
             {
               "$type": "Document",
