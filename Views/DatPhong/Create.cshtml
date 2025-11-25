@@ -1,17 +1,19 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
-@model HotelManagement.Models.DatPhong
+@model HotelManagement.Models.DatPhongRequest
 @{
     ViewData["Title"] = "Đặt phòng mới";
 
     // Model is initialized in controller, but ensure safe access
-    var chiTietDatPhongs = Model.chiTietDatPhongs ?? new List<HotelManagement.Models.ChiTietDatPhong>();
-    var suDungDichVus = Model.suDungDichVus ?? new List<HotelManagement.Models.SuDungDichVu>();
+    var chiTietDatPhongs = Model.ChiTietDatPhongs ?? new List<HotelManagement.Models.ChiTietDatPhongRequest>();
+    var suDungDichVus = Model.SuDungDichVus ?? new List<HotelManagement.Models.SuDungDichVuRequest>();
 
     // ✅ ViewBag null-safe
     var phongOptions = (ViewBag.PhongOptions.Items as IEnumerable<HotelManagement.Models.Phong>)
         ?? Enumerable.Empty<HotelManagement.Models.Phong>();
     var dichVuOptions = (ViewBag.DichVuOptions.Items as IEnumerable<HotelManagement.Models.DichVu>)
         ?? Enumerable.Empty<HotelManagement.Models.DichVu>();
+    var loaiPhongOptions = (ViewBag.LoaiPhongOptions.Items as IEnumerable<HotelManagement.Models.LoaiPhong>)
+            ?? Enumerable.Empty<HotelManagement.Models.LoaiPhong>();
 
     // Build select lists
     var phongSelectList = phongOptions
@@ -51,6 +53,14 @@
                     Text = $"{nv.HoTen} - {nv.ChucVu ?? "N/A"}"
                 })
         .ToList();
+
+    var loaiPhongSelectList = loaiPhongOptions
+          .Select(d => new SelectListItem
+          {
+              Value = d.MaLoaiPhong.ToString(),
+              Text = $"{d.TenLoaiPhong}"
+          })
+          .ToList();
 }
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
@@ -60,40 +70,40 @@
 
     <div class="row g-3">
         <div class="col-md-6">
-            <label asp-for="maKhachHang" class="form-label">Khách hàng</label>
-            <select asp-for="maKhachHang" asp-items="khachHangList" class="form-select"></select>
-            <span asp-validation-for="maKhachHang" class="text-danger"></span>
+            <label asp-for="MaKhachHang" class="form-label">Khách hàng</label>
+            <select asp-for="MaKhachHang" asp-items="khachHangList" class="form-select"></select>
+            <span asp-validation-for="MaKhachHang" class="text-danger"></span>
         </div>
         <div class="col-md-6">
-            <label asp-for="maNhanVien" class="form-label">Nhân viên phụ trách</label>
-            <select asp-for="maNhanVien" asp-items="nhanVienList" class="form-select"></select>
-            <span asp-validation-for="maNhanVien" class="text-danger"></span>
+            <label asp-for="MaNhanVien" class="form-label">Nhân viên phụ trách</label>
+            <select asp-for="MaNhanVien" asp-items="nhanVienList" class="form-select"></select>
+            <span asp-validation-for="MaNhanVien" class="text-danger"></span>
         </div>
         <div class="col-md-4">
-            <label asp-for="ngayDat" class="form-label">Ngày đặt</label>
-            <input asp-for="ngayDat" class="form-control" type="date" />
-            <span asp-validation-for="ngayDat" class="text-danger"></span>
+            <label asp-for="NgayDat" class="form-label">Ngày đặt</label>
+            <input asp-for="NgayDat" class="form-control" type="date" />
+            <span asp-validation-for="NgayDat" class="text-danger"></span>
         </div>
         <div class="col-md-4">
-            <label asp-for="ngayNhan" class="form-label">Ngày nhận</label>
-            <input asp-for="ngayNhan" class="form-control" type="date" />
-            <span asp-validation-for="ngayNhan" class="text-danger"></span>
+            <label asp-for="NgayNhan" class="form-label">Ngày nhận</label>
+            <input asp-for="NgayNhan" class="form-control" type="date" />
+            <span asp-validation-for="NgayNhan" class="text-danger"></span>
         </div>
         <div class="col-md-4">
-            <label asp-for="ngayTra" class="form-label">Ngày trả</label>
-            <input asp-for="ngayTra" class="form-control" type="date" />
-            <span asp-validation-for="ngayTra" class="text-danger"></span>
+            <label asp-for="NgayTra" class="form-label">Ngày trả</label>
+            <input asp-for="NgayTra" class="form-control" type="date" />
+            <span asp-validation-for="NgayTra" class="text-danger"></span>
         </div>
         <div class="col-md-4">
-            <label asp-for="trangThai" class="form-label">Trạng thái</label>
-            <select asp-for="trangThai" class="form-select">
+            <label asp-for="TrangThai" class="form-label">Trạng thái</label>
+            <select asp-for="TrangThai" class="form-select">
                 <option value="">-- Chọn trạng thái --</option>
                 <option value="DaDat">Đã đặt</option>
                 <option value="DaNhan">Đã nhận</option>
                 <option value="DaTra">Đã trả</option>
                 <option value="Huy">Hủy</option>
             </select>
-            <span asp-validation-for="trangThai" class="text-danger"></span>
+            <span asp-validation-for="TrangThai" class="text-danger"></span>
         </div>
     </div>
 
@@ -106,7 +116,7 @@
             <thead class="table-light">
                 <tr>
                     <th style="width: 30%">Phòng</th>
-                    <th style="width: 20%">Loại phòng</th>
+                    <th style="width: 20%">Đơn giá</th>
                     <th style="width: 15%">Số đêm</th>
                     <th style="width: 25%">Tổng tiền</th>
                     <th style="width: 10%">Thao tác</th>
@@ -168,7 +178,8 @@
         // Pass ViewBag data to JavaScript
         window.DatPhongData = {
             phongOptions: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(phongOptions)),
-            dichVuOptions: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(dichVuOptions))
+            dichVuOptions: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(dichVuOptions)),
+            loaiPhongOptions: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(loaiPhongOptions))
         };
     </script>
     <script src="~/js/datPhong.js"></script>

@@ -128,28 +128,4 @@ namespace HotelManagement.Models
         public string ghiChu { get; set; }
     }
 
-    // Request models for API
-    public class DatPhongRequest
-    {
-        public int KhachHangId { get; set; }
-        public int NhanVienId { get; set; }
-        public DateTime NgayNhan { get; set; }
-        public DateTime NgayTra { get; set; }
-        public List<ChiTietDatPhongRequest> ChiTietDatPhongs { get; set; } = new();
-        public List<SuDungDichVuRequest> SuDungDichVus { get; set; } = new();
-    }
-
-    public class ChiTietDatPhongRequest
-    {
-        public int PhongId { get; set; }
-        public decimal DonGia { get; set; }
-        public int SoDem { get; set; }
-    }
-
-    public class SuDungDichVuRequest
-    {
-        public int DichVuId { get; set; }
-        public int SoLuong { get; set; }
-        public decimal DonGia { get; set; }
-    }
 }

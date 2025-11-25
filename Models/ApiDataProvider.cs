@@ -180,9 +180,18 @@ namespace HotelManagement.Models
 
         public static bool DeleteDichVu(int id)
             => DeleteFromApiAsync($"api/DichVu/{id}").GetAwaiter().GetResult();
-          
 
 
+
+        // Thêm vào class ApiDataProvider
+        public static DatPhong? CreateDatPhong(DatPhongRequest request)
+            => PostToApiAsync<DatPhong>("api/DatPhong", request).GetAwaiter().GetResult();
+
+        public static bool UpdateDatPhong(DatPhong datPhong)
+            => PutToApiAsync($"api/DatPhong/{datPhong.maDatPhong}", datPhong).GetAwaiter().GetResult();
+
+        public static bool DeleteDatPhong(int id)
+            => DeleteFromApiAsync($"api/DatPhong/{id}").GetAwaiter().GetResult();
 
         public static IReadOnlyList<DatPhong> GetDatPhongs()
             => GetFromApi<List<DatPhong>>("api/DatPhong") ?? new List<DatPhong>();

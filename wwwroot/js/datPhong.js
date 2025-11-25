@@ -157,61 +157,126 @@ window.DatPhongApp = {
 
                 const formData = new FormData(form);
 
-                // Collect data from form
+                // ✅ Collect data theo đúng DatPhongRequest (PascalCase)
                 const data = {
-                    maKhachHang: parseInt(formData.get('maKhachHang')),
-                    maNhanVien: parseInt(formData.get('maNhanVien')),
-                    ngayDat: formData.get('ngayDat'),
-                    ngayNhan: formData.get('ngayNhan'),
-                    ngayTra: formData.get('ngayTra'),
-                    trangThai: formData.get('trangThai'),
-                    chiTietDatPhongs: [],
-                    suDungDichVus: []
+                    MaKhachHang: parseInt(formData.get('MaKhachHang')),
+                    MaNhanVien: formData.get('MaNhanVien') ?
+                        parseInt(formData.get('MaNhanVien')) : null,
+                    NgayDat: formData.get('NgayDat'),
+                    NgayNhan: formData.get('NgayNhan'),
+                    NgayTra: formData.get('NgayTra'),
+                    TrangThai: formData.get('TrangThai') || 'Đã đặt',
+                    ChiTietDatPhongs: [],
+                    SuDungDichVus: []
                 };
 
-                // Collect phong data from table rows
+                // ✅ Collect phong data theo ChiTietDatPhongRequest (MaPhong, DonGia, SoDem)
                 const phongRows = document.querySelectorAll('#phongContainer .phong-row');
                 phongRows.forEach((row) => {
-                    const phongId = row.querySelector('.phong-select')?.value;
+                    const maPhong = row.querySelector('.phong-select')?.value;
                     const donGia = parseFloat(row.querySelector('.don-gia-phong')?.value || 0);
                     const soDem = parseInt(row.querySelector('.so-dem')?.value || 0);
 
-                    if (phongId && donGia > 0 && soDem > 0) {
-                        data.chiTietDatPhongs.push({
-                            PhongId: parseInt(phongId),
+                    // Chỉ thêm nếu có đầy đủ thông tin hợp lệ
+                    if (maPhong && donGia > 0 && soDem > 0) {
+                        data.ChiTietDatPhongs.push({
+                            MaPhong: parseInt(maPhong),
                             DonGia: donGia,
-                            SoDem: soDem
+                            SoDem: soDem  // ✅ Đổi từ soLuong sang SoDem
                         });
                     }
                 });
 
-                // Collect dich vu data from table rows
+                // ✅ Collect dich vu data theo SuDungDichVuRequest (MaDichVu, SoLuong, DonGia)
                 const dichVuRows = document.querySelectorAll('#dichVuContainer .dichvu-row');
                 dichVuRows.forEach((row) => {
-                    const dichVuId = row.querySelector('.dichvu-select')?.value;
+                    const maDichVu = row.querySelector('.dichvu-select')?.value;
                     const soLuong = parseInt(row.querySelector('.so-luong')?.value || 0);
                     const donGia = parseFloat(row.querySelector('.don-gia-dichvu')?.value || 0);
 
-                    if (dichVuId && soLuong > 0 && donGia > 0) {
-                        data.suDungDichVus.push({
-                            DichVuId: parseInt(dichVuId),
+                    // Chỉ thêm nếu có đầy đủ thông tin hợp lệ
+                    if (maDichVu && soLuong > 0 && donGia > 0) {
+                        data.SuDungDichVus.push({
+                            MaDichVu: parseInt(maDichVu),
                             SoLuong: soLuong,
                             DonGia: donGia
                         });
                     }
                 });
 
+                // ✅ Filter lần nữa để chắc chắn không có null
+                data.ChiTietDatPhongs = data.ChiTietDatPhongs.filter(ct => ct !== null);
+                data.SuDungDichVus = data.SuDungDichVus.filter(sv => sv !== null);
+
                 console.log('Submitting data:', data);
 
-                // Submit form (for now just redirect - actual API call would go here)
-                alert('Đặt phòng thành công! (Demo)');
-                window.location.href = '/DatPhong';
+                // ✅ Lấy AntiForgeryToken
+                 token = form.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                
+                // ✅ Gọi API thực tế
+                const response = await fetch('/DatPhong/Create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': token || ''
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    // Kiểm tra xem có redirect không
+                    if (response.redirected) {
+                        window.location.href = response.url;
+                    } else {
+                        alert('Đặt phòng thành công!');
+                        window.location.href = '/DatPhong/Index';
+                    }
+                } else {
+                    // Xử lý lỗi validation từ server
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        const errorData = await response.json();
+                        console.error('Validation errors:', errorData);
+                        this.displayValidationErrors(errorData);
+                    } else {
+                        throw new Error('Lỗi từ server: ' + response.statusText);
+                    }
+                }
 
             } catch (error) {
                 console.error('Error creating dat phong:', error);
                 alert('Không thể đặt phòng: ' + error.message);
+            } finally {
+                // ✅ Reset button về trạng thái ban đầu
+                const submitBtn = form.querySelector('[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Tạo đặt phòng';
+                }
             }
         });
+    },
+
+    // ✅ Thêm hàm hiển thị lỗi validation
+    displayValidationErrors(errors) {
+        // Xóa lỗi cũ
+        document.querySelectorAll('.validation-error').forEach(el => el.remove());
+
+        // Hiển thị lỗi mới
+        if (errors.errors) {
+            for (const [field, messages] of Object.entries(errors.errors)) {
+                const input = document.querySelector(`[name="${field}"]`);
+                if (input) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'validation-error text-danger small mt-1';
+                    errorDiv.textContent = messages.join(', ');
+                    input.parentElement.appendChild(errorDiv);
+                    input.classList.add('is-invalid');
+                }
+            }
+        } else if (errors.title || errors.message) {
+            alert(errors.title || errors.message);
+        }
     },
 
     // Setup dynamic rows
@@ -263,7 +328,7 @@ window.DatPhongApp = {
                 </select>
             </td>
             <td>
-                <input type="text" class="form-control loai-phong" readonly />
+                <input type="text" name="chiTietDatPhongs[${index}].DonGia" class="form-control don-gia-phong" readonly />
             </td>
             <td>
                 <input type="number" name="chiTietDatPhongs[${index}].SoDem" class="form-control so-dem" min="1" value="1" required />
@@ -335,11 +400,13 @@ window.DatPhongApp = {
 
         try {
             if (window.DatPhongData && window.DatPhongData.phongOptions) {
-                window.DatPhongData.phongOptions.filter(p => p.tinhTrang === 'Trong').forEach(item => {
+
+                window.DatPhongData.phongOptions.filter(p => p.TinhTrang == 'Trong').forEach(item => {
+                    const loaiphong = window.DatPhongData.loaiPhongOptions.find(e => e.MaLoaiPhong == item.maLoaiPhong);
                     const option = document.createElement('option');
-                    option.value = item.Id;
-                    option.textContent = `${item.SoPhong} - ${item.loaiPhong?.tenLoaiPhong || 'N/A'} (${(item.loaiPhong?.giaMoiDem || 0).toLocaleString('vi-VN')} đ/đêm)`;
-                    option.dataset.gia = item.loaiPhong?.giaMoiDem || 0;
+                    option.value = item.MaPhong;
+                    option.textContent = `${item.SoPhong} - ${loaiphong.TenLoaiPhong || 'N/A'} (${(loaiphong.GiaMoiDem || 0).toLocaleString('vi-VN')} đ/đêm)`;
+                    option.dataset.gia = loaiphong.GiaMoiDem || 0;
                     select.appendChild(option);
                 });
             }
@@ -369,7 +436,7 @@ window.DatPhongApp = {
         }
     },
 
-    // Setup phong row events
+    // Setup phong row events - FIXED VERSION
     setupPhongRowEvents(row) {
         // Phong select change
         const phongSelect = row.querySelector('.phong-select');
@@ -381,8 +448,11 @@ window.DatPhongApp = {
                     const soDemInput = row.querySelector('.so-dem');
                     const thanhTienInput = row.querySelector('.thanh-tien-phong');
 
+                    // GÁN ĐƠN GIÁ VÀO INPUT (FIX 1)
                     donGiaInput.value = selectedOption.dataset.gia;
-                    const thanhTien = parseFloat(donGiaInput.value) * parseInt(soDemInput.value || 0);
+
+                    // TÍNH THÀNH TIỀN
+                    const thanhTien = parseFloat(selectedOption.dataset.gia) * parseInt(soDemInput.value || 0);
                     thanhTienInput.value = thanhTien;
 
                     this.calculateTotal();
@@ -390,15 +460,22 @@ window.DatPhongApp = {
             });
         }
 
-        // So dem change
+        // So dem change - FIXED VERSION
         const soDemInput = row.querySelector('.so-dem');
         if (soDemInput) {
             soDemInput.addEventListener('input', () => {
-                const donGia = parseFloat(row.querySelector('.don-gia-phong')?.value || 0);
-                const soDem = parseInt(soDemInput.value || 0);
-                const thanhTienInput = row.querySelector('.thanh-tien-phong');
-                thanhTienInput.value = donGia * soDem;
-                this.calculateTotal();
+                const phongSelect = row.querySelector('.phong-select');
+                const selectedOption = phongSelect?.selectedOptions[0];
+
+                // ĐỌC GIÁ TỪ OPTION ĐÃ CHỌN THAY VÌ INPUT (FIX 2)
+                if (selectedOption && selectedOption.dataset.gia) {
+                    const donGia = parseFloat(selectedOption.dataset.gia);
+                    const soDem = parseInt(soDemInput.value || 0);
+                    const thanhTienInput = row.querySelector('.thanh-tien-phong');
+
+                    thanhTienInput.value = donGia * soDem;
+                    this.calculateTotal();
+                }
             });
         }
 

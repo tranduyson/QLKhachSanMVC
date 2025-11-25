@@ -28,27 +28,24 @@ namespace HotelManagement.Controllers
 
         public IActionResult Create()
         {
-            var model = new DatPhong
+            var model = new DatPhongRequest
             {
-                ngayDat = DateTime.Today,
-                ngayNhan = DateTime.Today,
-                ngayTra = DateTime.Today.AddDays(1),
-                trangThai = "DaDat",
-                chiTietDatPhongs = new List<ChiTietDatPhong>
-        {
-            new ChiTietDatPhong
-            {
-                SoPhong = string.Empty,
-                TenLoaiPhong = string.Empty
-            }
-        },
-                suDungDichVus = new List<SuDungDichVu>
-        {
-            new SuDungDichVu
-            {
-                TenDichVu = string.Empty
-            }
-        }
+                NgayDat = DateTime.Today,
+                NgayNhan = DateTime.Today,
+                NgayTra = DateTime.Today.AddDays(1),
+                TrangThai = "DaDat",
+                ChiTietDatPhongs = new List<ChiTietDatPhongRequest>
+                    {
+                        new ChiTietDatPhongRequest
+                        {
+                        }
+                    },
+                            SuDungDichVus = new List<SuDungDichVuRequest>
+                    {
+                        new SuDungDichVuRequest
+                        {
+                        }
+                    }
             };
 
             PopulateDropdowns(model);
@@ -57,23 +54,21 @@ namespace HotelManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(DatPhong model)
+        public IActionResult Create([FromBody] DatPhongRequest model)
         {
             // ✅ Guard kỹ hơn
             if (model == null)
             {
-                model = new DatPhong();
+                model = new DatPhongRequest();
             }
-
-            model.chiTietDatPhongs ??= new List<ChiTietDatPhong>();
-            model.suDungDichVus ??= new List<SuDungDichVu>();
+            model.ChiTietDatPhongs ??= new List<ChiTietDatPhongRequest>();
+            model.SuDungDichVus ??= new List<SuDungDichVuRequest>();
 
             // ✅ Loại bỏ các phần tử null trong collection
-            model.chiTietDatPhongs = model.chiTietDatPhongs
+            model.ChiTietDatPhongs = model.ChiTietDatPhongs
                 .Where(ct => ct != null)
                 .ToList();
-
-            model.suDungDichVus = model.suDungDichVus
+            model.SuDungDichVus = model.SuDungDichVus
                 .Where(sv => sv != null)
                 .ToList();
 
@@ -85,89 +80,90 @@ namespace HotelManagement.Controllers
                 return View(model);
             }
 
-            model.tongTien = CalculateTotal(model);
-            TempData["Message"] = "Đã tạo đặt phòng (demo).";
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                // ✅ Chuyển đổi từ DatPhong model sang DatPhongRequest DTO
+                var request = new DatPhongRequest
+                {
+                    MaKhachHang = model.MaKhachHang,
+                    MaNhanVien = model.MaNhanVien,
+                    NgayDat = model.NgayDat,
+                    NgayNhan = model.NgayNhan,
+                    NgayTra = model.NgayTra,
+                    TrangThai = model.TrangThai ?? "Đã đặt",
+                    ChiTietDatPhongs = model.ChiTietDatPhongs
+                        .Where(ct => ct != null)
+                        .Select(ct => new ChiTietDatPhongRequest
+                        {
+                            MaPhong = ct.MaPhong,
+                            DonGia = ct.DonGia,
+                            SoDem = ct.SoDem // Hoặc SoDem nếu có property này
+                        }).ToList(),
+                    SuDungDichVus = model.SuDungDichVus
+                        .Where(sv => sv != null)
+                        .Select(sv => new SuDungDichVuRequest
+                        {
+                            MaDichVu = sv.MaDichVu,
+                            SoLuong = sv.SoLuong,
+                            DonGia = sv.DonGia
+                        }).ToList()
+                };
+
+                // ✅ Gọi API để tạo đặt phòng
+                var createdDatPhong = ApiDataProvider.CreateDatPhong(request);
+
+                if (createdDatPhong != null)
+                {
+                    TempData["SuccessMessage"] = "Đặt phòng thành công!";
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Không thể tạo đặt phòng. Vui lòng thử lại.";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Lỗi khi đặt phòng: {ex.Message}";
+                return View(model);
+            }
         }
 
-        private void PopulateDropdowns(DatPhong model)
+        private void PopulateDropdowns(DatPhongRequest model)
         {
             var khachHangs = ApiDataProvider.GetKhachHangs() ?? Enumerable.Empty<KhachHang>();
             var nhanViens = ApiDataProvider.GetNhanViens() ?? Enumerable.Empty<NhanVien>();
             var phongs = ApiDataProvider.GetPhongs() ?? Enumerable.Empty<Phong>();
             var dichVus = ApiDataProvider.GetDichVus() ?? Enumerable.Empty<DichVu>();
+            var loaiPhongs = ApiDataProvider.GetLoaiPhongs() ?? Enumerable.Empty<LoaiPhong>();
 
-            ViewBag.KhachHangList = new SelectList(khachHangs, "maKhachHang", "hoTen", model.maKhachHang);
-            ViewBag.NhanVienList = new SelectList(nhanViens, "Id", "hoTen", model.maNhanVien);
+            ViewBag.KhachHangList = new SelectList(khachHangs, "maKhachHang", "hoTen", model.MaKhachHang);
+            ViewBag.NhanVienList = new SelectList(nhanViens, "Id", "hoTen", model.MaNhanVien);
             ViewBag.PhongOptions =  new SelectList(phongs, "MaPhong", "SoPhong",null);
             ViewBag.DichVuOptions = new SelectList(dichVus, "MaDichVu", "TenDichVu", null);
+            ViewBag.LoaiPhongOptions = new SelectList(loaiPhongs, "MaLoaiPhong", "TenLoaiPhong", null);
         }
 
-        private static void NormalizeCollections(DatPhong model)
+        private static void NormalizeCollections(DatPhongRequest model)
         {
-            model.chiTietDatPhongs = model.chiTietDatPhongs?
-                .Where(ct => ct.PhongId > 0 && ct.SoDem > 0)
+            model.ChiTietDatPhongs = model.ChiTietDatPhongs?
+                .Where(ct => ct.MaPhong > 0 && ct.SoDem > 0)
                 .Select((ct, index) =>
                 {
-                    ct.Id = index + 1;
+                    ct.MaPhong = index + 1;
                     return ct;
                 })
                 .ToList();
 
-            model.suDungDichVus = model.suDungDichVus?
-                .Where(sv => sv.DichVuId > 0 && sv.SoLuong > 0)
+            model.SuDungDichVus = model.SuDungDichVus?
+                .Where(sv => sv.MaDichVu > 0 && sv.SoLuong > 0)
                 .Select((sv, index) =>
                 {
-                    sv.Id = index + 1;
+                    sv.MaDichVu = index + 1;
                     return sv;
                 })
                 .ToList();
-        }
-
-        public IActionResult Edit(int id)
-        {
-            var booking = ApiDataProvider.GetDatPhong(id);
-            if (booking == null)
-            {
-                return NotFound();
-            }
-
-            PopulateDropdowns(booking);
-            return View(booking);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, DatPhong model)
-        {
-            if (id != model.maDatPhong)
-            {
-                return NotFound();
-            }
-
-            model.chiTietDatPhongs ??= new List<ChiTietDatPhong>();
-            model.suDungDichVus ??= new List<SuDungDichVu>();
-
-            // Remove null elements
-            model.chiTietDatPhongs = model.chiTietDatPhongs
-                .Where(ct => ct != null)
-                .ToList();
-
-            model.suDungDichVus = model.suDungDichVus
-                .Where(sv => sv != null)
-                .ToList();
-
-            NormalizeCollections(model);
-            PopulateDropdowns(model);
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            model.tongTien = CalculateTotal(model);
-            TempData["Message"] = "Đã cập nhật đặt phòng (demo).";
-            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
