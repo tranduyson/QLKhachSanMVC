@@ -40,10 +40,11 @@
                     <td class="text-end">
                         <a asp-action="Details" asp-route-id="@item.maDatPhong" class="btn btn-sm btn-outline-info">Chi tiết</a>
                         <a asp-action="Edit" asp-route-id="@item.maDatPhong" class="btn btn-sm btn-warning ms-1">Sửa</a>
-                        <form asp-action="Delete" asp-route-id="@item.maDatPhong" method="post" class="d-inline"
-                              onsubmit="return confirm('Bạn có chắc chắn muốn xóa đặt phòng này?')">
-                            <button type="submit" class="btn btn-sm btn-danger ms-1">Xóa</button>
-                        </form>
+                                                <form asp-action="Delete" asp-route-id="@item.maDatPhong" method="post" class="d-inline"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa đặt phòng này?')">
+                                                        @Html.AntiForgeryToken()
+                                                        <button type="submit" class="btn btn-sm btn-danger ms-1">Xóa</button>
+                                                </form>
                     </td>
                 </tr>
             }

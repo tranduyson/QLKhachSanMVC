@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Q5lnZNed8yLEMAtGaH5sQi0vguWtL1Z+EvzElPOyz+8=",
+  "Hash": "iE7pfKkiolSjN7jDsiQBYos7Uof7rntLn0hnsyFmTws=",
   "Source": "HotelManagement",
   "BasePath": "_content/HotelManagement",
   "Mode": "Default",
@@ -207,7 +207,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Nov 2025 15:36:33 GMT"
+          "Value": "Fri, 28 Nov 2025 13:41:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -252,7 +252,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Nov 2025 15:36:33 GMT"
+          "Value": "Fri, 28 Nov 2025 13:41:30 GMT"
         },
         {
           "Name": "Cache-Control",

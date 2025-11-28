@@ -16,13 +16,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\datPhong.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"7i1z4t9mzm"},{"Name":"integrity","Value":"sha256-XxqAJamaYeI7\u002BG8/Y/lXbQXT1XGNszrrzov2EPTUe6s="},{"Name":"label","Value":"_content/HotelManagement/js/datPhong.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"31234"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022XxqAJamaYeI7\u002BG8/Y/lXbQXT1XGNszrrzov2EPTUe6s=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Nov 2025 15:36:33 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"31234"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022XxqAJamaYeI7\u002BG8/Y/lXbQXT1XGNszrrzov2EPTUe6s=\u0022"},{"Name":"Last-Modified","Value":"Fri, 28 Nov 2025 13:41:30 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HotelManagement/js/datPhong.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\datPhong.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-XxqAJamaYeI7\u002BG8/Y/lXbQXT1XGNszrrzov2EPTUe6s="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"31234"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022XxqAJamaYeI7\u002BG8/Y/lXbQXT1XGNszrrzov2EPTUe6s=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Nov 2025 15:36:33 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"31234"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022XxqAJamaYeI7\u002BG8/Y/lXbQXT1XGNszrrzov2EPTUe6s=\u0022"},{"Name":"Last-Modified","Value":"Fri, 28 Nov 2025 13:41:30 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/HotelManagement/js/loaiPhong.9vir1cqzzi.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\loaiPhong.js'))</AssetFile>

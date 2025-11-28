@@ -176,8 +176,23 @@ namespace HotelManagement.Controllers
                 return NotFound();
             }
 
-            // In a real implementation, you would delete from the database
-            TempData["Message"] = "Đã xóa đặt phòng (demo).";
+            try
+            {
+                var deleted = ApiDataProvider.DeleteDatPhong(id);
+                if (deleted)
+                {
+                    TempData["SuccessMessage"] = "Đã xóa đặt phòng.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Xóa thất bại. Vui lòng thử lại.";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Lỗi khi xóa: {ex.Message}";
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
