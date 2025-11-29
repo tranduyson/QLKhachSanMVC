@@ -234,9 +234,9 @@
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Create.cshtml",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml*",
-              "RelativeToolTip": "Views\\DatPhong\\Create.cshtml*",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAAwGcAAAAiAAAAAAAAAA==",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml",
+              "RelativeToolTip": "Views\\DatPhong\\Create.cshtml",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAAwGcAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-10T14:31:31.82Z",
               "IsPinned": true,
@@ -288,8 +288,7 @@
               "RelativeToolTip": "Views\\DatPhong\\Edit.cshtml",
               "ViewState": "AgIAAKMAAAAAAAAAAAAvwOEAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-23T15:08:58.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-23T15:08:58.474Z"
             },
             {
               "$type": "Document",
@@ -301,8 +300,7 @@
               "RelativeToolTip": "wwwroot\\js\\datPhong.js",
               "ViewState": "AgIAAGYAAAAAAAAAAADwv2kAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-10T14:30:14.51Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T14:30:14.51Z"
             },
             {
               "$type": "Document",

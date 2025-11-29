@@ -38,6 +38,12 @@ namespace HotelManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            // Load thông tin đầy đủ của DatPhong nếu chưa có
+            if (payment.DatPhong == null && payment.maDatPhong > 0)
+            {
+                payment.DatPhong = ApiDataProvider.GetDatPhong(payment.maDatPhong);
+            }
+
             return View(payment);
         }
 
@@ -49,6 +55,7 @@ namespace HotelManagement.Controllers
                 TrangThai = true
             };
 
+            PopulateDropdowns();
             return View(model);
         }
 
@@ -58,6 +65,7 @@ namespace HotelManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
+                PopulateDropdowns();
                 return View(model);
             }
 
@@ -83,6 +91,7 @@ namespace HotelManagement.Controllers
                 return NotFound();
             }
 
+            PopulateDropdowns();
             return View(payment);
         }
 
@@ -104,6 +113,7 @@ namespace HotelManagement.Controllers
 
             if (!ModelState.IsValid)
             {
+                PopulateDropdowns();
                 return View(model);
             }
 
@@ -144,6 +154,38 @@ namespace HotelManagement.Controllers
 
             TempData["Message"] = "Đã xóa thanh toán thành công.";
             return RedirectToAction(nameof(Index));
+        }
+
+        private void PopulateDropdowns()
+        {
+            var datPhongs = ApiDataProvider.GetDatPhongs() ?? Enumerable.Empty<DatPhong>();
+            
+            ViewBag.DatPhongList = new SelectList(
+                datPhongs.Select(dp => new 
+                {
+                    Value = dp.maDatPhong,
+                    Text = $"Đơn #{dp.maDatPhong} - Khách: {dp.khachHang?.hoTen} - Tổng tiền: {CalculateTotalAmount(dp):N0}đ"
+                }),
+                "Value",
+                "Text"
+            );
+
+            ViewBag.TrangThaiList = new SelectList(
+                new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "False", Text = "Chưa thanh toán" },
+                    new SelectListItem { Value = "True", Text = "Đã thanh toán" }
+                },
+                "Value",
+                "Text"
+            );
+        }
+
+        private decimal CalculateTotalAmount(DatPhong datPhong)
+        {
+            decimal roomTotal = datPhong.chiTietDatPhongs?.Sum(x => x.DonGia * x.SoDem) ?? 0;
+            decimal serviceTotal = datPhong.suDungDichVus?.Sum(x => x.DonGia * x.SoLuong) ?? 0;
+            return roomTotal + serviceTotal;
         }
     }
 }

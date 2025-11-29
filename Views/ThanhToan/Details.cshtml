@@ -36,14 +36,156 @@
             <div class="fw-semibold fs-5 text-success">@Model.SoTien.ToString("N0") đ</div>
         </div>
     </div>
+    <div class="col-md-12">
+        <div class="border rounded-3 p-3">
+            <div class="text-muted">Ghi chú</div>
+            <div class="fw-semibold">@(string.IsNullOrEmpty(Model.ghiChu) ? "Không có ghi chú" : Model.ghiChu)</div>
+        </div>
+    </div>
 </div>
 
 <h5 class="mb-3">Đặt phòng liên quan</h5>
 <div class="border rounded-3 p-3">
-    <div class="fw-semibold mb-1">Đặt phòng #@Model.DatPhong?.maDatPhong</div>
-    <div>Khách hàng: @Model.DatPhong?.khachHang?.hoTen</div>
-    <div>Thời gian: @Model.DatPhong?.ngayNhan.ToString("dd/MM/yyyy") - @Model.DatPhong?.ngayTra.ToString("dd/MM/yyyy")</div>
-    <div>Tổng tiền: @Model.DatPhong?.tongTien.ToString("N0") đ</div>
+    @if (Model.DatPhong != null)
+    {
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div>
+                    <span class="text-muted">Mã đơn đặt phòng:</span>
+                    <span class="fw-semibold">#@Model.DatPhong.maDatPhong</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <span class="text-muted">Trạng thái đơn:</span>
+                    <span class="badge bg-info">@Model.DatPhong.trangThai</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <span class="text-muted">Khách hàng:</span>
+                    <span class="fw-semibold">@Model.DatPhong.khachHang?.hoTen</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <span class="text-muted">SĐT khách hàng:</span>
+                    <span class="fw-semibold">@(Model.DatPhong.khachHang?.SoDienThoai ?? "N/A")</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <span class="text-muted">Ngày nhận phòng:</span>
+                    <span class="fw-semibold">@Model.DatPhong.ngayNhan.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <span class="text-muted">Ngày trả phòng:</span>
+                    <span class="fw-semibold">@Model.DatPhong.ngayTra.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+            </div>
+            @if (Model.DatPhong.chiTietDatPhongs?.Count > 0)
+            {
+                <div class="col-md-12">
+                    <span class="text-muted d-block mb-2">Chi tiết phòng:</span>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Phòng</th>
+                                    <th>Loại phòng</th>
+                                    <th>Giá/đêm</th>
+                                    <th>Số đêm</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var detail in Model.DatPhong.chiTietDatPhongs)
+                                {
+                                    <tr>
+                                        <td>@detail.SoPhong</td>
+                                        <td>@detail.TenLoaiPhong</td>
+                                        <td>@detail.DonGia.ToString("N0") đ</td>
+                                        <td>@detail.SoDem</td>
+                                        <td class="fw-semibold">@detail.ThanhTien.ToString("N0") đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            @if (Model.DatPhong.suDungDichVus?.Count > 0)
+            {
+                <div class="col-md-12">
+                    <span class="text-muted d-block mb-2">Dịch vụ sử dụng:</span>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Dịch vụ</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var service in Model.DatPhong.suDungDichVus)
+                                {
+                                    <tr>
+                                        <td>@service.TenDichVu</td>
+                                        <td>@service.DonGia.ToString("N0") đ</td>
+                                        <td>@service.SoLuong</td>
+                                        <td class="fw-semibold">@service.ThanhTien.ToString("N0") đ</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr class="border-top">
+                                <td class="text-end fw-semibold">Tổng tiền phòng:</td>
+                                <td class="text-end fw-semibold">
+                                    @{
+                                        decimal roomTotal = Model.DatPhong.chiTietDatPhongs?.Sum(x => x.ThanhTien) ?? 0;
+                                    }
+                                    @roomTotal.ToString("N0") đ
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-end fw-semibold">Tổng tiền dịch vụ:</td>
+                                <td class="text-end fw-semibold">
+                                    @{
+                                        decimal serviceTotal = Model.DatPhong.suDungDichVus?.Sum(x => x.ThanhTien) ?? 0;
+                                    }
+                                    @serviceTotal.ToString("N0") đ
+                                </td>
+                            </tr>
+                            <tr class="border-top border-bottom bg-light">
+                                <td class="text-end fw-semibold fs-5">Tổng tiền đơn:</td>
+                                <td class="text-end fw-semibold fs-5 text-primary">
+                                    @{
+                                        decimal totalOrder = roomTotal + serviceTotal;
+                                    }
+                                    @totalOrder.ToString("N0") đ
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">Không tìm thấy thông tin đơn đặt phòng</div>
+    }
 </div>
 
 <div class="d-flex justify-content-between mt-4">
