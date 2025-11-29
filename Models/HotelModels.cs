@@ -125,7 +125,7 @@ namespace HotelManagement.Models
         public DateTime NgayThanhToan { get; set; }
         public string PhuongThuc { get; set; } = "TienMat";
         public bool TrangThai { get; set; } = false;
-        public string ghiChu { get; set; }
+        public string? ghiChu { get; set; }
     }
 
 }
