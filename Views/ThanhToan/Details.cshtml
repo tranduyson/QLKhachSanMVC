@@ -1,6 +1,18 @@
 @model HotelManagement.Models.ThanhToan
 @{
     ViewData["Title"] = "Chi tiết thanh toán";
+    
+    // Helper function to format payment method
+    string FormatPhuongThuc(string phuongThuc)
+    {
+        return phuongThuc switch
+        {
+            "TienMat" => "Tiền mặt",
+            "ChuyenKhoan" => "Chuyển khoản",
+            "The" => "Thẻ",
+            _ => phuongThuc
+        };
+    }
 }
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
@@ -21,7 +33,7 @@
     <div class="col-md-4">
         <div class="border rounded-3 p-3">
             <div class="text-muted">Phương thức</div>
-            <div class="fw-semibold">@Model.PhuongThuc</div>
+            <div class="fw-semibold">@FormatPhuongThuc(Model.PhuongThuc)</div>
         </div>
     </div>
     <div class="col-md-4">

@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\QLKhachSSan\\QLKhachSanMVC\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\thanhtoan\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\thanhtoan\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\thanhtoan\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\thanhtoan\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\datphong\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -183,16 +195,8 @@
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\thanhtoan\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\thanhtoan\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\thanhtoan\\_form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\thanhtoan\\_form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|solutionrelative:views\\thanhtoan\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1F5A2494-8502-5161-C802-5DF5FD400A26}|HotelManagement.csproj|d:\\qlkhachssan\\qlkhachsanmvc\\views\\khachhang\\_form.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -226,17 +230,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Create.cshtml",
               "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Create.cshtml",
               "RelativeToolTip": "Views\\DatPhong\\Create.cshtml",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAAwGcAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAGwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-10T14:31:31.82Z",
               "IsPinned": true,
@@ -244,19 +248,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DatPhongController.cs",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\DatPhongController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DatPhongController.cs",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\DatPhongController.cs",
-              "RelativeToolTip": "Controllers\\DatPhongController.cs",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAMwKgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-15T15:07:42.761Z"
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThanhToan\\Create.cshtml",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Create.cshtml",
+              "RelativeToolTip": "Views\\ThanhToan\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-29T14:42:47.962Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "ApiDataProvider.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\ApiDataProvider.cs",
               "RelativeDocumentMoniker": "Models\\ApiDataProvider.cs",
@@ -268,7 +273,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "DatPhongDTOs.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\DatPhongDTOs.cs",
               "RelativeDocumentMoniker": "Models\\DatPhongDTOs.cs",
@@ -280,7 +285,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Edit.cshtml",
@@ -292,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "datPhong.js",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\datPhong.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\datPhong.js",
@@ -304,7 +309,45 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThanhToan\\Details.cshtml",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Details.cshtml",
+              "RelativeToolTip": "Views\\ThanhToan\\Details.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T15:00:22.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DatPhongController.cs",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\DatPhongController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DatPhongController.cs",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\DatPhongController.cs",
+              "RelativeToolTip": "Controllers\\DatPhongController.cs",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAMwKgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T15:07:42.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\ThanhToan\\Index.cshtml",
+              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
+              "RelativeToolTip": "Views\\ThanhToan\\Index.cshtml",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAowC8AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T15:55:40.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "DashboardViewModel.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\DashboardViewModel.cs",
               "RelativeDocumentMoniker": "Models\\DashboardViewModel.cs",
@@ -316,7 +359,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "HotelModels.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\HotelModels.cs",
               "RelativeDocumentMoniker": "Models\\HotelModels.cs",
@@ -328,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "PhongController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\PhongController.cs",
               "RelativeDocumentMoniker": "Controllers\\PhongController.cs",
@@ -340,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Details.cshtml",
@@ -352,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -364,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
@@ -376,7 +419,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -388,7 +431,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DatPhong\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\DatPhong\\Index.cshtml",
@@ -400,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "site.js",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
@@ -412,7 +455,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\LoaiPhong\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\LoaiPhong\\Create.cshtml",
@@ -424,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "_Form.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DichVu\\_Form.cshtml",
               "RelativeDocumentMoniker": "Views\\DichVu\\_Form.cshtml",
@@ -436,7 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DichVu\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\DichVu\\Create.cshtml",
@@ -448,7 +491,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\LoaiPhong\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\LoaiPhong\\Details.cshtml",
@@ -460,7 +503,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "Models\\LoginViewModel.cs",
@@ -472,7 +515,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "_Form.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\LoaiPhong\\_Form.cshtml",
               "RelativeDocumentMoniker": "Views\\LoaiPhong\\_Form.cshtml",
@@ -484,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\LoaiPhong\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\LoaiPhong\\Index.cshtml",
@@ -496,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Phong\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Phong\\Index.cshtml",
@@ -508,7 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "HotelManagement",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\HotelManagement.csproj",
               "RelativeDocumentMoniker": "HotelManagement.csproj",
@@ -519,7 +562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -531,7 +574,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "LoaiPhongController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\LoaiPhongController.cs",
               "RelativeDocumentMoniker": "Controllers\\LoaiPhongController.cs",
@@ -543,7 +586,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
@@ -555,7 +598,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "_FormActions.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Shared\\_FormActions.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_FormActions.cshtml",
@@ -567,7 +610,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\NhanVien\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\NhanVien\\Index.cshtml",
@@ -579,7 +622,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": ".gitignore",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -591,7 +634,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "_Form.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Phong\\_Form.cshtml",
               "RelativeDocumentMoniker": "Views\\Phong\\_Form.cshtml",
@@ -603,7 +646,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Phong\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\Phong\\Create.cshtml",
@@ -615,7 +658,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\KhachHang\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\KhachHang\\Index.cshtml",
@@ -627,7 +670,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "DichVuController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\DichVuController.cs",
               "RelativeDocumentMoniker": "Controllers\\DichVuController.cs",
@@ -639,7 +682,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\NhanVien\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\NhanVien\\Create.cshtml",
@@ -651,7 +694,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "_Form.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\NhanVien\\_Form.cshtml",
               "RelativeDocumentMoniker": "Views\\NhanVien\\_Form.cshtml",
@@ -663,7 +706,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\NhanVien\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\NhanVien\\Details.cshtml",
@@ -675,7 +718,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DichVu\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\DichVu\\Details.cshtml",
@@ -687,7 +730,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DichVu\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\DichVu\\Index.cshtml",
@@ -699,7 +742,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\KhachHang\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\KhachHang\\Details.cshtml",
@@ -711,7 +754,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\DichVu\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\DichVu\\Edit.cshtml",
@@ -723,7 +766,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 43,
               "Title": "ThanhToanController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\ThanhToanController.cs",
               "RelativeDocumentMoniker": "Controllers\\ThanhToanController.cs",
@@ -735,7 +778,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 44,
               "Title": "SampleData.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Models\\SampleData.cs",
               "RelativeDocumentMoniker": "Models\\SampleData.cs",
@@ -747,7 +790,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 46,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\KhachHang\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\KhachHang\\Edit.cshtml",
@@ -759,7 +802,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 45,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\LoaiPhong\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\LoaiPhong\\Edit.cshtml",
@@ -771,7 +814,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 47,
               "Title": "KhachHangController.cs",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Controllers\\KhachHangController.cs",
               "RelativeDocumentMoniker": "Controllers\\KhachHangController.cs",
@@ -783,19 +826,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Details.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThanhToan\\Details.cshtml",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Details.cshtml",
-              "RelativeToolTip": "Views\\ThanhToan\\Details.cshtml",
-              "ViewState": "AgIAACIAAAAAAAAAAADgvy0AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T15:00:22.606Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 48,
               "Title": "_Form.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\_Form.cshtml",
               "RelativeDocumentMoniker": "Views\\ThanhToan\\_Form.cshtml",
@@ -807,19 +838,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\ThanhToan\\Index.cshtml",
-              "ToolTip": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Index.cshtml",
-              "RelativeToolTip": "Views\\ThanhToan\\Index.cshtml",
-              "ViewState": "AgIAABMAAAAAAAAAAAAowCMAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T15:55:40.984Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\Phong\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\Phong\\Details.cshtml",
@@ -831,7 +850,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "_Form.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\KhachHang\\_Form.cshtml",
               "RelativeDocumentMoniker": "Views\\KhachHang\\_Form.cshtml",
@@ -843,7 +862,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\ThanhToan\\Edit.cshtml",
               "RelativeDocumentMoniker": "Views\\ThanhToan\\Edit.cshtml",
@@ -855,7 +874,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
@@ -867,7 +886,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\QLKhachSSan\\QLKhachSanMVC\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",

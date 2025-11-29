@@ -1,6 +1,18 @@
 @model IEnumerable<HotelManagement.Models.ThanhToan>
 @{
     ViewData["Title"] = "Danh sách thanh toán";
+    
+    // Helper function to format payment method
+    string FormatPhuongThuc(string phuongThuc)
+    {
+        return phuongThuc switch
+        {
+            "TienMat" => "Tiền mặt",
+            "ChuyenKhoan" => "Chuyển khoản",
+            "The" => "Thẻ",
+            _ => phuongThuc
+        };
+    }
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -31,7 +43,7 @@
                     <td>#@item.maDatPhong</td>
                     <td>@item.SoTien.ToString("N0") đ</td>
                     <td>@item.NgayThanhToan.ToString("dd/MM/yyyy")</td>
-                    <td>@item.PhuongThuc</td>
+                    <td>@FormatPhuongThuc(item.PhuongThuc)</td>
                     <td>
                         @if (item.TrangThai)
                         {
